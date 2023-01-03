@@ -14,7 +14,7 @@
 <div class="card card-custom gutter-b">
     <div class="card-header flex-wrap py-3">
         <div class="card-title">
-            <h2 class="card-label">BALANCE AND RECEIPT</h2>
+            <h2 class="card-label">List of Household</h2>
         </div>
         <div class="card-toolbar">
             <form class="d-flex" role="search">

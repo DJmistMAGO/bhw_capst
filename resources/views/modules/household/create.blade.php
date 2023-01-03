@@ -37,12 +37,6 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="form-label font-weight-bolder">Total PWD's<span class="text-danger">*</span></label>
-                            <input type="number" name="total_pwd" class="form-control" value=""
-                                placeholder="Enter Family Count"/>
-                        </div>
-
-                        <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">15-49 SWARA:</label>
                                 <select class="form-control" name="swara" id="">
                                     <option value="" selected>--Please Select--</option>
@@ -116,14 +110,6 @@
                                 </select>
                         </div>
 
-						<div class="form-group col-md-3">
-                            <label class="form-label font-weight-bolder">Total Senior Citizen</label>
-                            <input type="text" name="total_senior" class="form-control" value=""
-                                placeholder="Enter Total"/>
-                        </div>
-
-
-
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Electrication:</label>
                                 <select class="form-control" name="electricatian" id="">
@@ -131,12 +117,6 @@
                                     <option value="wcr">With Kontador</option>
                                     <option value="wocr">Without Kontador</option>
                                 </select>
-                        </div>
-
-						<div class="form-group col-md-3">
-                            <label class="form-label font-weight-bolder">Total Voters</label>
-                            <input type="text" name="total_voter" class="form-control" value=""
-                                placeholder="Enter Total"/>
                         </div>
 
                         <div class="form-group col-md-3">
@@ -207,6 +187,21 @@
                                 <label class="form-label font-weight-bolder">Types of PWD:</label>
                                 <input type="text" name="" class="form-control" value="" placeholder="Enter Household No." />
                             </div> 
+                            <div class="form-group col-md-3">
+                                <label class="form-label font-weight-bolder">Is a voter?</label>
+                                <div class="radio-inline">
+                                    <label class="radio">
+                                        <input type="radio" name="v_yes" value="vyes"/>
+                                        <span></span> 
+                                        Yes
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="v_yes" value="vno"/>
+                                        <span></span>
+                                        No
+                                    </label> 
+                                </div> 
+                            </div>
                             
                         </div>
                         <div class="d-none" data-item-hide>
