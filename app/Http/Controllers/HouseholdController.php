@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Household;
 use Illuminate\Http\Request;
 
 class HouseholdController extends Controller
@@ -9,7 +10,8 @@ class HouseholdController extends Controller
 
     public function index()
     {
-        return view('modules.household.index');
+        $households = Household::paginate(10);
+        return view('modules.household.index', compact('households'));
     }
 
 
