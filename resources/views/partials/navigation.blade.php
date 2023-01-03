@@ -9,7 +9,7 @@
             data-menu-dropdown-timeout="500">
             <ul class="menu-nav">
                 <li class="menu-item {{ !request()->routeIs('home') ?: 'menu-item-active' }}" aria-haspopup="true">
-                    <a href="{{ route('home') }}}" class="menu-link">
+                    <a href="{{ route('home') }}" class="menu-link">
                         <i class="menu-icon flaticon2-cube"></i>
                         <span class="menu-text">Home</span>
                     </a>
