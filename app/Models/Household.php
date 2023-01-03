@@ -11,16 +11,22 @@ class Household extends Model
 
     protected $fillable = [
         'household_no',
+        'purok',
+        'total_fam',
+        'total_pwd',
+        'total_senior',
+        'swara',
+        'salt',
+        'herbal',
+        'grb_disposal',
         'housing_status',
+        'water_source',
         'fam_planning',
         'env_sanitation',
+        'electrification',
         'animal_owned',
-        'water_source',
-        'grb_disposal',
-        'gardening',
-        'vehicles',
-        'purok',
-        'year_now',
+        'vehicle',
+        'total_voter',
     ];
 
     public function residents()

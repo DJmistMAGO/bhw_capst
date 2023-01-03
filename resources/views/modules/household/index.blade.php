@@ -33,7 +33,7 @@
             <table class="table table-hover" id="kt_datatable">
                 <thead>
                     <th>Household No.</th>
-                    <th>Housing Status</th>
+                    <th>Total Family</th>
                     <th>Purok</th>
                     @if (auth()->user()->user_name == 'treseBHW')
                         <th class="text-center">Actions</th>

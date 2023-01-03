@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('household_no');
             $table->string('purok');
             $table->integer('total_fam');
-            $table->integer('total_pwd');
-            $table->integer('total_senior');
+            $table->integer('total_pwd')->nullable();
+            $table->integer('total_senior')->nullable();
             $table->string('swara');
             $table->string('salt');
             $table->string('herbal');
@@ -28,10 +28,10 @@ return new class extends Migration
             $table->string('water_source');
             $table->string('fam_planning');
             $table->string('env_sanitation');
-            $table->string('electricatian');
-            $table->string('animal_owned'); 
-            $table->string('vehicle'); 
-            $table->string('total_voter');
+            $table->string('electrification');
+            $table->string('animal_owned');
+            $table->string('vehicle');
+            $table->string('total_voter')->nullable();
             $table->timestamps();
         });
     }

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('religion')->nullable();
             $table->string('marital_status');
             $table->string('pwd_type')->nullable();
+            $table->string('is_voter')->default(false);
             $table->timestamps();
         });
     }
