@@ -13,8 +13,8 @@ class MainController extends Controller
     public function home()
     {
         $households = Household::all()->count();
-        $incidents = Incident::all()->count();
-        $complaints = Complaint::all()->count();
+        // $incidents = Incident::all()->count();
+        // $complaints = Complaint::all()->count();
 
         return view('modules.dashboard', compact('households', 'incidents', 'complaints'));
     }
