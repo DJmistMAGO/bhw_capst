@@ -32,13 +32,13 @@
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Total Families<span class="text-danger">*</span></label>
-                            <input type="text" name="household_no" class="form-control" value=""
+                            <input type="text" name="total_fam" class="form-control" value=""
                                 placeholder="Enter Family Count"/>
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Total PWD's<span class="text-danger">*</span></label>
-                            <input type="number" name="household_no" class="form-control" value=""
+                            <input type="number" name="total_pwd" class="form-control" value=""
                                 placeholder="Enter Family Count"/>
                         </div>
 
@@ -54,7 +54,7 @@
                         
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">USING IODIZED SALT:</label>
-                                <select class="form-control" name="swara" id="">
+                                <select class="form-control" name="salt" id="">
                                     <option value="" selected>--Please Select--</option>
                                     <option value="nhts">Yes</option>
                                     <option value="nonb4pcs">No</option> 
@@ -63,7 +63,7 @@
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Herbal:</label>
-                                <select class="form-control" name="grb_disposal" id="">
+                                <select class="form-control" name="herbal" id="">
                                     <option value="">--Please Select--</option>
                                     <option value="burning">Vegetable Gardening</option>
                                     <option value="dumping">Root Crops</option>
@@ -94,7 +94,7 @@
 
 						<div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Source of Drinking Water:</label>
-                                <select class="form-control" name="src_water" id="">
+                                <select class="form-control" name="water_source" id="">
                                     <option value="">--Please Select--</option>
                                     <option value="lvl1">Level 1</option>
                                     <option value="lvl2">Level 2</option>
@@ -104,7 +104,7 @@
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Family Planning:</label>
-                                <select class="form-control" name="family_planning" id="">
+                                <select class="form-control" name="fam_planning" id="">
                                     <option value="">--Please Select--</option>
                                     <option value="pill">Pills</option>
                                     <option value="dmpa">DMPA</option>
@@ -118,7 +118,7 @@
 
 						<div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Total Senior Citizen</label>
-                            <input type="text" name="household_no" class="form-control" value=""
+                            <input type="text" name="total_senior" class="form-control" value=""
                                 placeholder="Enter Total"/>
                         </div>
 
@@ -126,7 +126,7 @@
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Electrication:</label>
-                                <select class="form-control" name="env_sanitation" id="">
+                                <select class="form-control" name="electricatian" id="">
                                     <option value="">--Please Select--</option>
                                     <option value="wcr">With Kontador</option>
                                     <option value="wocr">Without Kontador</option>
@@ -135,7 +135,7 @@
 
 						<div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Total Voters</label>
-                            <input type="text" name="household_no" class="form-control" value=""
+                            <input type="text" name="total_voter" class="form-control" value=""
                                 placeholder="Enter Total"/>
                         </div>
 
@@ -150,13 +150,13 @@
                         
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Animal Owned:</label>
-                            <input type="text" name="" class="form-control" value=""
+                            <input type="text" name="animal_owned" class="form-control" value=""
                                 placeholder="Enter Animal" />
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Vehicle Owned:</label>
-                            <input type="text" name="animal_owned" class="form-control" value=""
+                            <input type="text" name="vehicle" class="form-control" value=""
                                 placeholder="Enter Vehicle " />
                         </div>
 
@@ -202,15 +202,7 @@
 										<option value="widowed">Widowed</option>
 										<option value="separated">Separated</option>
                                     </select>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="form-label font-weight-bolder">Birthdate:</label>
-                                <input type="date" name="" class="form-control" value="" placeholder="Enter Household No." />
-                            </div>
-                            <div class="form-group col-md-3">
-                                <label class="form-label font-weight-bolder">Religion:</label>
-                                <input type="text" name="" class="form-control" value="" placeholder="Enter Household No." />
-                            </div>
+                            </div> 
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Types of PWD:</label>
                                 <input type="text" name="" class="form-control" value="" placeholder="Enter Household No." />
