@@ -22,4 +22,9 @@ class Household extends Model
         'purok',
         'year_now',
     ];
+
+    public function residents()
+    {
+        return $this->hasMany(Resident::class);
+    }
 }
