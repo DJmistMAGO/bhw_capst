@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Resident;
 use Illuminate\Http\Request;
 
 class ResidentController extends Controller
@@ -13,7 +14,8 @@ class ResidentController extends Controller
      */
     public function index()
     {
-        return view('modules.resident.index');
+        $residents = Resident::with('household')->orderBy('household_id', 'asc')->paginate(10);
+        return view('modules.resident.index', compact('residents'));
     }
 
     /**

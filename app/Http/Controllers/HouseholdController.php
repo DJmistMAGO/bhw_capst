@@ -17,7 +17,21 @@ class HouseholdController extends Controller
 
     public function create()
     {
-        return view('modules.household.create');
+        $puroks = ['Purok 1', 'Purok 2', 'Purok 3', 'Purok 4', 'Purok 5', 'Sitio Matanac'];
+        $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
+        $choices = ['Yes', 'No'];
+        $herbals = ['Vegetable Gardening', 'Root Crops'];
+        $grbs = ['Burning', 'Dumping', 'Segragating', 'Composting', 'Recycling'];
+        $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
+        $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well', 'Level 4 - Spring', 'Level 5 - River'];
+        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BLL', 'Condom', 'Withdrawal', 'Abstinence', 'IUD', 'Implant'];
+        $elecs = ['With Kontador', 'Without Kontador', 'Solar'];
+        $sanitation = ['With CR', 'Without CR'];
+        $genders = ['Male', 'Female'];
+        $status = ['Single', 'Married', 'Widowed', 'Separated', 'Divorced'];
+
+
+        return view('modules.household.create', compact('puroks', 'swaras', 'choices', 'herbals', 'grbs', 'h_statuses', 'w_source', 'fam_plans', 'elecs', 'sanitation', 'genders', 'status'));
     }
 
 

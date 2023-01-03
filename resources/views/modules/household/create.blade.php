@@ -15,7 +15,7 @@
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Household No.:<span
                                     class="text-danger">*</span></label>
-                            <input type="text" name="household_no" class="form-control" value=""
+                            <input type="text" name="household_no" class="form-control" value="{{ old('household_no') }}"
                                 placeholder="Enter Household No." />
                         </div>
 
@@ -23,12 +23,10 @@
                             <label class="form-label font-weight-bolder">Purok:<span class="text-danger">*</span></label>
                             <select class="form-control" name="purok">
                                 <option value="">--Please Select--</option>
-                                <option value="Purok 1">Purok 1</option>
-                                <option value="Purok 2">Purok 2</option>
-                                <option value="Purok 3">Purok 3</option>
-                                <option value="Purok 4">Purok 4</option>
-                                <option value="Purok 5">Purok 5</option>
-                                <option value="Sitio Matanac">Sitio Matanac</option>
+                                @foreach ($puroks as $purok)
+                                    <option value="{{ $purok }}" @selected(old('purok') == $purok)>{{ $purok }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -42,10 +40,11 @@
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">15-49 SWARA:</label>
                             <select class="form-control" name="swara" id="">
-                                <option value="" selected>--Please Select--</option>
-                                <option value="nhts">NHTS</option>
-                                <option value="nonb4pcs">NHTS Non 4PCS</option>
-                                <option value="nonnhts">Non NHTS</option>
+                                <option value="">--Please Select--</option>
+                                @foreach ($swaras as $swara)
+                                    <option value="{{ $swara }}" @selected(old('swara') == $swara)>{{ $swara }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -53,8 +52,10 @@
                             <label class="form-label font-weight-bolder">USING IODIZED SALT:</label>
                             <select class="form-control" name="salt" id="">
                                 <option value="" selected>--Please Select--</option>
-                                <option value="nhts">Yes</option>
-                                <option value="nonb4pcs">No</option>
+                                @foreach ($choices as $choice)
+                                    <option value="{{ $choice }}" @selected(old('salt') == $choice)>{{ $choice }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -62,8 +63,10 @@
                             <label class="form-label font-weight-bolder">Herbal:</label>
                             <select class="form-control" name="herbal" id="">
                                 <option value="">--Please Select--</option>
-                                <option value="vegetable">Vegetable Gardening</option>
-                                <option value="rootcrops">Root Crops</option>
+                                @foreach ($herbals as $herbal)
+                                    <option value="{{ $herbal }}" @selected(old('herbal') == $herbal)>{{ $herbal }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -71,9 +74,10 @@
                             <label class="form-label font-weight-bolder">Garbage Disposal:</label>
                             <select class="form-control" name="grb_disposal" id="">
                                 <option value="">--Please Select--</option>
-                                <option value="burning">Burning</option>
-                                <option value="dumping">Dumping</option>
-                                <option value="segregation">Segregation</option>
+                                @foreach ($grbs as $grb)
+                                    <option value="{{ $grb }}" @selected(old('grb_disposal') == $grb)>{{ $grb }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -81,11 +85,10 @@
                             <label class="form-label font-weight-bolder">Housing Status:</label>
                             <select class="form-control" name="housing_status" id="">
                                 <option value="" selected>--Please Select--</option>
-                                <option value="h1">H1</option>
-                                <option value="h2">H2</option>
-                                <option value="h3">H3</option>
-                                <option value="h4">H4</option>
-                                <option value="h5">H5</option>
+                                @foreach ($h_statuses as $hs)
+                                    <option value="{{ $hs }}" @selected(old('housing_status') == $hs)>{{ $hs }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -93,9 +96,10 @@
                             <label class="form-label font-weight-bolder">Source of Drinking Water:</label>
                             <select class="form-control" name="water_source" id="">
                                 <option value="">--Please Select--</option>
-                                <option value="lvl1">Level 1 - Faucet</option>
-                                <option value="lvl2">Level 2 - Hand Pump</option>
-                                <option value="lvl3">Level 3 - Well</option>
+                                @foreach ($w_source as $water)
+                                    <option value="{{ $water }}" @selected(old('water_source') == $water)>{{ $water }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -103,13 +107,10 @@
                             <label class="form-label font-weight-bolder">Family Planning:</label>
                             <select class="form-control" name="fam_planning" id="">
                                 <option value="">--Please Select--</option>
-                                <option value="pill">Pills</option>
-                                <option value="dmpa">DMPA</option>
-                                <option value="smda">SMDA</option>
-                                <option value="bll">BLL</option>
-                                <option value="condom">Condom</option>
-                                <option value="implant">Implant</option>
-                                <option value="other">Others</option>
+                                @foreach ($fam_plans as $fam_plan)
+                                    <option value="{{ $fam_plan }}" @selected(old('fam_planning') == $fam_plan)>{{ $fam_plan }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -117,9 +118,10 @@
                             <label class="form-label font-weight-bolder">Electrification:</label>
                             <select class="form-control" name="electrification" id="">
                                 <option value="">--Please Select--</option>
-                                <option value="wkon">With Kontador</option>
-                                <option value="wokon">Without Kontador</option>
-                                <option value="solar">Solar Panel</option>
+                                @foreach ($elecs as $elec)
+                                    <option value="{{ $elec }}" @selected(old('electrification') == $elec)>{{ $elec }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -127,8 +129,10 @@
                             <label class="form-label font-weight-bolder">Environmental Sanitation:</label>
                             <select class="form-control" name="env_sanitation" id="">
                                 <option value="">--Please Select--</option>
-                                <option value="wcr">With CR</option>
-                                <option value="wocr">Without CR</option>
+                                @foreach ($sanitation as $san)
+                                    <option value="{{ $san }}" @selected(old('env_sanitation') == $san)>{{ $san }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -164,8 +168,11 @@
                                 <label class="form-label font-weight-bolder">Gender:</label>
                                 <select class="form-control" name="gender[]" id="">
                                     <option value="">--Please Select--</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
+                                    @foreach ($genders as $gender)
+                                        <option value="{{ $gender }}" @selected(old('gender.0') == $gender)>
+                                            {{ $gender }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
@@ -187,10 +194,11 @@
                                 <label class="form-label font-weight-bolder">Marital Status:</label>
                                 <select class="form-control" name="marital_status[]">
                                     <option value="">--Select Marital Status--</option>
-                                    <option value="single">Single</option>
-                                    <option value="married">Married</option>
-                                    <option value="widowed">Widowed</option>
-                                    <option value="separated">Separated</option>
+                                    @foreach ($status as $m_status)
+                                        <option value="{{ $m_status }}" @selected(old('marital_status.0') == $m_status)>
+                                            {{ $m_status }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
