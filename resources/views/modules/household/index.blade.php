@@ -33,32 +33,33 @@
             <table class="table table-hover" id="kt_datatable">
                 <thead>
                     <th>Household No.</th>
-                    <th>Family Leader</th>
+                    <th>Housing Status</th>
                     <th>Purok</th>
                     @if (auth()->user()->user_name == 'treseBHW')
                         <th class="text-center">Actions</th>
                     @endif
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>001</td>
-                        <td>juan dela cruz</td>
-                        <td>test</td>
-                        @if (auth()->user()->user_name == 'treseBHW')
-                            <td class="nowrap d-flex justify-content-center">
-                                <div class="d-flex justify-content-center">
-                                    <a href="" class="btn btn-sm btn-success mr-1"> VIEW </a>
-                                    <a href="" class="btn btn-sm btn-primary"> EDIT </a>
-                                    <a href="" class="btn btn-sm btn-danger ml-1"> DELETE </a>
-                                </div>
-                            </td>
-                        @endif
-                    </tr>
-                    {{-- @empty
-                    <tr>
-                        <td colspan="12" class="text-center">No data</td>
-                    </tr>
-                @endforelse --}}
+                    @forelse ($households as $household)
+                        <tr>
+                            <td>{{ $household->household_no }}</td>
+                            <td>{{ $household->total_fam }}</td>
+                            <td>{{ $household->purok }}</td>
+                            @if (auth()->user()->user_name == 'treseBHW')
+                                <td class="nowrap d-flex justify-content-center">
+                                    <div class="d-flex justify-content-center">
+                                        <a href="" class="btn btn-sm btn-success mr-1"> VIEW </a>
+                                        <a href="" class="btn btn-sm btn-primary"> EDIT </a>
+                                        <a href="" class="btn btn-sm btn-danger ml-1"> DELETE </a>
+                                    </div>
+                                </td>
+                            @endif
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="12" class="text-center">No data</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
