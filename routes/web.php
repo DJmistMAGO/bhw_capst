@@ -44,3 +44,17 @@ Route::controller(HouseholdController::class)->group(function () {
     });
     
 });
+
+Route::controller(ResidentController::class)->group(function () {
+    Route::group([
+        'prefix' => 'resident'
+    ], function () {
+        Route::get('/', 'index')->name('resident.index');
+        Route::get('/create', 'create')->name('resident.create');
+        Route::post('/store', 'store')->name('resident.store');
+        Route::get('/edit/{id}', 'edit')->name('resident.edit');
+        Route::get('/show/{id}', 'show')->name('resident.show');
+        Route::put('/update/{id}', 'update')->name('resident.update');
+    });
+    
+});
