@@ -23,5 +23,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('admintrese')
             ]);
         }
+        if (!User::where('user_name', 'guest')->first()) {
+            $user = User::create([
+                'name' => 'Guest',
+                'user_name' => 'guest',
+                'password' => Hash::make('guest')
+            ]);
+        }
     }
 }

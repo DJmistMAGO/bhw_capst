@@ -29,17 +29,6 @@
                         </div>
                     </div>
                     <div class="navi navi-spacer-x-0 pt-5">
-                        {{-- <a href="{{ route('brgyInfo') }}" class="navi-item px-8">
-                            <div class="navi-link">
-                                <div class="navi-icon mr-2">
-                                    <i class="flaticon2-calendar-3 text-info"></i>
-                                </div>
-                                <div class="navi-text">
-                                    <div class="font-weight-bold">View Barangay Information</div>
-                                </div>
-                            </div>
-                        </a> --}}
-                        <div class="navi-separator mt-3"></div>
                         <div class="navi-footer px-8 py-5">
                             <form method="get" action="{{ route('auth.logout') }}">
                                 @csrf
