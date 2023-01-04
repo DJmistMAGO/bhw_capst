@@ -38,13 +38,15 @@
                             <td>{{ $resident->household->household_no }}</td>
                             <td>{{ $resident->fullname }}</td>
                             <td>{{ $resident->household->purok }}</td>
-                            <td class="nowrap d-flex justify-content-center">
-                                <div class="d-flex justify-content-center">
-                                    <a href="" class="btn btn-sm btn-success mr-1"> VIEW </a>
-                                    <a href="" class="btn btn-sm btn-primary mr-1"> EDIT </a>
-                                    <a href="" class="btn btn-sm btn-danger mr-1"> DELETE </a>
-                                </div>
-                            </td>
+                            @if (auth()->user()->user_name == 'treseBHW')
+                                <td class="nowrap d-flex justify-content-center">
+                                    <div class="d-flex justify-content-center">
+                                        <a href="" class="btn btn-sm btn-success mr-1"> VIEW </a>
+                                        <a href="" class="btn btn-sm btn-primary mr-1"> EDIT </a>
+                                        <a href="" class="btn btn-sm btn-danger mr-1"> DELETE </a>
+                                    </div>
+                                </td>
+                            @endif
                         </tr>
                     @empty
                         <tr>

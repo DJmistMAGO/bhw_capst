@@ -33,8 +33,8 @@
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Total Families<span
                                     class="text-danger">*</span></label>
-                            <input type="number" name="total_fam" class="form-control" value=""
-                                placeholder="Enter Family Count" />
+                            <input type="number" name="total_fam" class="form-control" max="10"
+                                value="{{ old('total_fam') }}" placeholder="Enter Family Count" />
                         </div>
 
                         <div class="form-group col-md-3">
@@ -50,7 +50,7 @@
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">USING IODIZED SALT:</label>
-                            <select class="form-control" name="salt" id="">
+                            <select class="form-control" name="salt">
                                 <option value="" selected>--Please Select--</option>
                                 @foreach ($choices as $choice)
                                     <option value="{{ $choice }}" @selected(old('salt') == $choice)>{{ $choice }}
@@ -61,7 +61,7 @@
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Herbal:</label>
-                            <select class="form-control" name="herbal" id="">
+                            <select class="form-control" name="herbal">
                                 <option value="">--Please Select--</option>
                                 @foreach ($herbals as $herbal)
                                     <option value="{{ $herbal }}" @selected(old('herbal') == $herbal)>{{ $herbal }}
@@ -138,13 +138,17 @@
 
                         <div class="form-group col-md-6">
                             <label class="form-label font-weight-bolder">Animal Owned:</label>
-                            <textarea name="animal_owned" class="form-control" placeholder="Ex. Dog, Cat, Rabbit, etc." rows="2"></textarea>
+                            <textarea name="animal_owned" class="form-control" placeholder="Ex. Dog, Cat, Rabbit, etc." rows="2">
+                                {{ old('animal_owned') }}
+                            </textarea>
                             <span class="text-muted">Enter animals owned separated by a comma (,)</span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label class="form-label font-weight-bolder">Vehicle Owned:</label>
-                            <textarea name="vehicle" class="form-control" placeholder="Ex. Motorcycle, Car, Jeep, Truck, etc." rows="2"></textarea>
+                            <textarea name="vehicle" class="form-control" placeholder="Ex. Motorcycle, Car, Jeep, Truck, etc." rows="2">
+                                {{ old('vehicle') }}
+                            </textarea>
                             <span class="text-muted">Enter vehicle/s owned separated by a comma (,)</span>
                         </div>
 
@@ -161,8 +165,8 @@
                         <div class="col-md-12 d-flex flex-wrap">
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Full Name:</label>
-                                <input type="text" name="fullname[]" class="form-control" value=""
-                                    placeholder="Enter Fullname" />
+                                <input type="text" name="fullname[]" class="form-control"
+                                    value="{{ old('fullname.0') }}" placeholder="Enter Fullname" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Gender:</label>
@@ -177,18 +181,18 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Birthdate:</label>
-                                <input type="date" name="bdate[]" class="form-control" value=""
+                                <input type="date" name="bdate[]" class="form-control" value="{{ old('bdate.0') }}"
                                     placeholder="Enter Birthdate" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Age:</label>
-                                <input type="number" name="age[]" class="form-control" value=""
+                                <input type="number" name="age[]" class="form-control" value="{{ old('age.0') }}"
                                     placeholder="Enter Age" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Religion:</label>
-                                <input type="text" name="religion[]" class="form-control" value=""
-                                    placeholder="Enter Religion" />
+                                <input type="text" name="religion[]" class="form-control"
+                                    value="{{ old('religion.0') }}" placeholder="Enter Religion" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Marital Status:</label>
@@ -205,15 +209,15 @@
                                 <label class="form-label font-weight-bolder">Is a voter?</label>
                                 <select name="is_voter[]" class="form-control">
                                     <option value="">--Select--</option>
-                                    <option value="true">Yes</option>
-                                    <option value="false">No</option>
+                                    <option value="true" {{ old('is_voter') == 'true' ? 'selected' : '' }}>Yes</option>
+                                    <option value="false" {{ old('is_voter') == 'false' ? 'selected' : '' }}>No</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Type of PWD:</label>
                                 <div class="input-group">
-                                    <input type="text" name="pwd_type[]" class="form-control" value=""
-                                        placeholder="Enter PWD status" />
+                                    <input type="text" name="pwd_type[]" class="form-control"
+                                        value="{{ old('pwd_type.0') }}" placeholder="Enter PWD status" />
                                     <div class="input-group-append d-none" data-item-hide>
                                         <button class="btn btn-danger" type="button" data-remove-item>
                                             <span class="flaticon2-trash"></span>
