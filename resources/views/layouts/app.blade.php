@@ -12,6 +12,7 @@
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/chart.css') }}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="{{ asset('assets/images/sk.png') }}" />
 
     <style>
@@ -101,14 +102,14 @@
     </script>
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script> 
     <script>
         var URL = '{{ config('app.url') }}'
     </script>
     @stack('scripts')
 
     <script src="{{ mix('js/app.js') }}"></script>
-
+     
     <script>
         if (window.livewire) {
             window.livewire.on('hideModal', (modalId) => {
