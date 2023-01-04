@@ -24,8 +24,8 @@ Route::middleware('auth')->group(function () {
             Route::get('/', 'index')->name('household.index');
             Route::get('/create', 'create')->name('household.create');
             Route::post('/store', 'store')->name('household.store');
-            Route::get('/edit/{id}', 'edit')->name('household.edit');
-            Route::get('/show/{id}', 'show')->name('household.show');
+            Route::get('/edit/{household}', 'edit')->name('household.edit');
+            Route::get('/show/{household}', 'show')->name('household.show');
             Route::put('/update/{id}', 'update')->name('household.update');
         });
     });

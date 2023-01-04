@@ -32,9 +32,12 @@
         <div class="card-body table-responsive">
             <table class="table table-hover" id="kt_datatable">
                 <thead>
+                    <th class="text-muted">#</th>
                     <th>Household No.</th>
                     <th>Total Family</th>
                     <th>Purok</th>
+                    {{-- <th>Animals Owned</th> --}}
+                    <th>Number of Voters</th>
                     @if (auth()->user()->user_name == 'treseBHW')
                         <th class="text-center">Actions</th>
                     @endif
@@ -42,15 +45,26 @@
                 <tbody>
                     @forelse ($households as $household)
                         <tr>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $household->household_no }}</td>
                             <td>{{ $household->total_fam }}</td>
                             <td>{{ $household->purok }}</td>
+                            {{-- <td>
+                                <?php
+                                $animals = explode(',', $household->animal_owned);
+                                $count = count($animals);
+                                echo $count;
+                                ?>
+                            </td> --}}
+                            <td>{{ $household->total_voter }}</td>
                             @if (auth()->user()->user_name == 'treseBHW')
                                 <td class="nowrap d-flex justify-content-center">
                                     <div class="d-flex justify-content-center">
-                                        <a href="" class="btn btn-sm btn-success mr-1"> VIEW </a>
-                                        <a href="" class="btn btn-sm btn-primary"> EDIT </a>
-                                        <a href="" class="btn btn-sm btn-danger ml-1"> DELETE </a>
+                                        <a href="{{ route('household.show', $household->id) }}"
+                                            class="btn btn-sm btn-success mr-1"> VIEW </a>
+                                        <a href="{{ route('household.edit', $household->id) }}"
+                                            class="btn btn-sm btn-primary mr-1"> EDIT </a>
+                                        @livewire('household.delete', ['household' => $household], key($household->id))
                                     </div>
                                 </td>
                             @endif

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <title>@yield('title')</title>
-    <meta name="description" content="SK Management" />
+    <meta name="description" content="STHC" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="canonical" href="url" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
@@ -12,7 +12,7 @@
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="{{ asset('assets/images/sk.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/images/st_trese.png') }}" />
 
     <style>
         [x-cloak] {
@@ -295,7 +295,6 @@
             });
         });
     </script>
-
 
     <script>
         $(document).ready(function() {

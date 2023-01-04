@@ -136,16 +136,16 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-6">
                             <label class="form-label font-weight-bolder">Animal Owned:</label>
-                            <input type="text" name="animal_owned" class="form-control" value=""
-                                placeholder="Enter Animal" />
+                            <textarea name="animal_owned" class="form-control" placeholder="Ex. Dog, Cat, Rabbit, etc." rows="2"></textarea>
+                            <span class="text-muted">Enter animals owned separated by a comma (,)</span>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-6">
                             <label class="form-label font-weight-bolder">Vehicle Owned:</label>
-                            <input type="text" name="vehicle" class="form-control" value=""
-                                placeholder="Enter Vehicle " />
+                            <textarea name="vehicle" class="form-control" placeholder="Ex. Motorcycle, Car, Jeep, Truck, etc." rows="2"></textarea>
+                            <span class="text-muted">Enter vehicle/s owned separated by a comma (,)</span>
                         </div>
 
                     </div>

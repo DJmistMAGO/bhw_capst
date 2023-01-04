@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Household;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Http\Requests\Household\StoreRequest;
+use App\Http\Requests\Household\UpdateRequest;
 
 class HouseholdController extends Controller
 {
@@ -23,7 +26,7 @@ class HouseholdController extends Controller
         $herbals = ['Vegetable Gardening', 'Root Crops'];
         $grbs = ['Burning', 'Dumping', 'Segragating', 'Composting', 'Recycling'];
         $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
-        $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well', 'Level 4 - Spring', 'Level 5 - River'];
+        $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
         $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BLL', 'Condom', 'Withdrawal', 'Abstinence', 'IUD', 'Implant'];
         $elecs = ['With Kontador', 'Without Kontador', 'Solar'];
         $sanitation = ['With CR', 'Without CR'];
@@ -35,34 +38,9 @@ class HouseholdController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        $validated = $request->validate([
-            'household_no' => 'required',
-            'purok' => 'required',
-            'total_fam' => 'required',
-            'swara' => 'required',
-            'salt' => 'required',
-            'herbal' => 'required',
-            'grb_disposal' => 'required',
-            'housing_status' => 'required',
-            'water_source' => 'required',
-            'fam_planning' => 'required',
-            'env_sanitation' => 'required',
-            'electrification' => 'required',
-            'animal_owned' => 'required',
-            'vehicle' => 'required',
-            'fullname' => 'nullable',
-            'gender' => 'nullable',
-            'bdate' => 'nullable',
-            'age' => 'nullable',
-            'religion' => 'nullable',
-            'marital_status' => 'nullable',
-            'pwd_type' => 'nullable',
-            'is_voter' => 'required',
-        ]);
-
-        // dd($validated);
+        $validated = $request->validated();
 
         $household = Household::create([
             'household_no' => $validated['household_no'],
@@ -113,26 +91,111 @@ class HouseholdController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Household $household)
     {
-        return view('modules.household.view');
+        $puroks = ['Purok 1', 'Purok 2', 'Purok 3', 'Purok 4', 'Purok 5', 'Sitio Matanac'];
+        $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
+        $choices = ['Yes', 'No'];
+        $herbals = ['Vegetable Gardening', 'Root Crops'];
+        $grbs = ['Burning', 'Dumping', 'Segragating', 'Composting', 'Recycling'];
+        $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
+        $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
+        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BLL', 'Condom', 'Withdrawal', 'Abstinence', 'IUD', 'Implant'];
+        $elecs = ['With Kontador', 'Without Kontador', 'Solar'];
+        $sanitation = ['With CR', 'Without CR'];
+        $genders = ['Male', 'Female'];
+        $status = ['Single', 'Married', 'Widowed', 'Separated', 'Divorced'];
+
+        return view('modules.household.view', compact('household', 'puroks', 'swaras', 'choices', 'herbals', 'grbs', 'h_statuses', 'w_source', 'fam_plans', 'elecs', 'sanitation', 'genders', 'status'));
     }
 
 
-    public function edit($id)
+    public function edit(Household $household)
     {
-        return view('modules.household.edit');
+        $puroks = ['Purok 1', 'Purok 2', 'Purok 3', 'Purok 4', 'Purok 5', 'Sitio Matanac'];
+        $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
+        $choices = ['Yes', 'No'];
+        $herbals = ['Vegetable Gardening', 'Root Crops'];
+        $grbs = ['Burning', 'Dumping', 'Segragating', 'Composting', 'Recycling'];
+        $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
+        $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
+        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BLL', 'Condom', 'Withdrawal', 'Abstinence', 'IUD', 'Implant'];
+        $elecs = ['With Kontador', 'Without Kontador', 'Solar'];
+        $sanitation = ['With CR', 'Without CR'];
+        $genders = ['Male', 'Female'];
+        $status = ['Single', 'Married', 'Widowed', 'Separated', 'Divorced'];
+
+        return view('modules.household.edit', compact('household', 'puroks', 'swaras', 'choices', 'herbals', 'grbs', 'h_statuses', 'w_source', 'fam_plans', 'elecs', 'sanitation', 'genders', 'status'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
-        //
-    }
+        $validated = $request->validated();
 
+        $household = Household::with('residents')->findOrFail($id);
 
-    public function destroy($id)
-    {
-        //
+        // dd($household);
+
+        $household->update(Arr::only($validated, [
+            'household_no',
+            'purok',
+            'total_fam',
+            'swara',
+            'salt',
+            'herbal',
+            'grb_disposal',
+            'housing_status',
+            'water_source',
+            'fam_planning',
+            'env_sanitation',
+            'electrification',
+            'animal_owned',
+            'vehicle'
+        ]));
+
+        $hhold = $household->residents()->pluck('id');
+
+        $deletedIds = $hhold->diff($validated['memberId'])->toArray();
+        if ($deletedIds) {
+            $household->residents()->whereIn('id', $deletedIds)->delete();
+        }
+        foreach ($validated['memberId'] as $key => $housemem) {
+            if (!$housemem) {
+                $household->residents()->create([
+                    'fullname' => $validated['fullname'][$key],
+                    'gender' => $validated['gender'][$key],
+                    'bdate' => $validated['bdate'][$key],
+                    'age' => $validated['age'][$key],
+                    'religion' => $validated['religion'][$key],
+                    'marital_status' => $validated['marital_status'][$key],
+                    'pwd_type' => $validated['pwd_type'][$key],
+                    'is_voter' => $validated['is_voter'][$key],
+                ]);
+            } else {
+                $household->residents()->where('id', $housemem)->update([
+                    'fullname' => $validated['fullname'][$key],
+                    'gender' => $validated['gender'][$key],
+                    'bdate' => $validated['bdate'][$key],
+                    'age' => $validated['age'][$key],
+                    'religion' => $validated['religion'][$key],
+                    'marital_status' => $validated['marital_status'][$key],
+                    'pwd_type' => $validated['pwd_type'][$key],
+                    'is_voter' => $validated['is_voter'][$key],
+                ]);
+            }
+
+            if ($validated['age'][$key] >= 60) {
+                $household->increment('total_senior');
+            }
+            if ($validated['pwd_type'][$key] != null) {
+                $household->increment('total_pwd');
+            }
+            if ($validated['is_voter'][$key] == 'true') {
+                $household->increment('total_voter');
+            }
+        };
+
+        return redirect()->route('household.index')->with('success', 'Household updated successfully!');
     }
 }
