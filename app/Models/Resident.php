@@ -18,6 +18,7 @@ class Resident extends Model
         'religion',
         'marital_status',
         'pwd_type',
+        'is_voter'
     ];
 
     public function household()

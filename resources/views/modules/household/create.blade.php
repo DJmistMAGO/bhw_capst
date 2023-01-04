@@ -6,128 +6,136 @@
 
 @section('content')
     <x-errors></x-errors>
-    <form action="" method="post"> 
+    <form action="{{ route('household.store') }}" method="post">
+        @csrf
         <div class="row">
             <div class="col-md-12">
                 <x-card title="Add Household" :back-url="route('household.index')">
                     <div class="d-flex flex-wrap">
                         <div class="form-group col-md-3">
-                            <label class="form-label font-weight-bolder">Household No.:<span class="text-danger">*</span></label>
-                            <input type="text" name="household_no" class="form-control" value=""
-                                placeholder="Enter Household No."/>
-                        </div>
-                        
-                        <div class="form-group col-md-3">
-                            <label class="form-label font-weight-bolder">Purok:<span class="text-danger">*</span></label>
-                                <select class="form-control" name="purok" id="">
-                                    <option value="">--Please Select--</option>
-                                    <option value="p1">Purok 1</option>
-                                    \<option value="p2">Purok 2</option>
-                                    <option value="p3">Purok 3</option>
-                                    <option value="p4">Purok 4</option>
-                                    <option value="p5">Purok 5</option>
-                                    <option value="p6">Purok 6</option>
-                                </select>
+                            <label class="form-label font-weight-bolder">Household No.:<span
+                                    class="text-danger">*</span></label>
+                            <input type="text" name="household_no" class="form-control" value="{{ old('household_no') }}"
+                                placeholder="Enter Household No." />
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="form-label font-weight-bolder">Total Families<span class="text-danger">*</span></label>
-                            <input type="text" name="total_fam" class="form-control" value=""
-                                placeholder="Enter Family Count"/>
+                            <label class="form-label font-weight-bolder">Purok:<span class="text-danger">*</span></label>
+                            <select class="form-control" name="purok">
+                                <option value="">--Please Select--</option>
+                                @foreach ($puroks as $purok)
+                                    <option value="{{ $purok }}" @selected(old('purok') == $purok)>{{ $purok }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label class="form-label font-weight-bolder">Total Families<span
+                                    class="text-danger">*</span></label>
+                            <input type="number" name="total_fam" class="form-control" value=""
+                                placeholder="Enter Family Count" />
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">15-49 SWARA:</label>
-                                <select class="form-control" name="swara" id="">
-                                    <option value="" selected>--Please Select--</option>
-                                    <option value="nhts">NHTS</option>
-                                    <option value="nonb4pcs">NHTS Non 4PCS</option>
-                                    <option value="nonnhts">Non NHTS</option>
-                                </select>
+                            <select class="form-control" name="swara" id="">
+                                <option value="">--Please Select--</option>
+                                @foreach ($swaras as $swara)
+                                    <option value="{{ $swara }}" @selected(old('swara') == $swara)>{{ $swara }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-                        
+
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">USING IODIZED SALT:</label>
-                                <select class="form-control" name="salt" id="">
-                                    <option value="" selected>--Please Select--</option>
-                                    <option value="nhts">Yes</option>
-                                    <option value="nonb4pcs">No</option> 
-                                </select>
+                            <select class="form-control" name="salt" id="">
+                                <option value="" selected>--Please Select--</option>
+                                @foreach ($choices as $choice)
+                                    <option value="{{ $choice }}" @selected(old('salt') == $choice)>{{ $choice }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Herbal:</label>
-                                <select class="form-control" name="herbal" id="">
-                                    <option value="">--Please Select--</option>
-                                    <option value="burning">Vegetable Gardening</option>
-                                    <option value="dumping">Root Crops</option>
-                                </select>
+                            <select class="form-control" name="herbal" id="">
+                                <option value="">--Please Select--</option>
+                                @foreach ($herbals as $herbal)
+                                    <option value="{{ $herbal }}" @selected(old('herbal') == $herbal)>{{ $herbal }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
-						<div class="form-group col-md-3">
+                        <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Garbage Disposal:</label>
-                                <select class="form-control" name="grb_disposal" id="">
-                                    <option value="">--Please Select--</option>
-                                    <option value="burning">Burning</option>
-                                    <option value="dumping">Dumping</option>
-                                    <option value="segregation">Segregation</option>
-                                </select>
+                            <select class="form-control" name="grb_disposal" id="">
+                                <option value="">--Please Select--</option>
+                                @foreach ($grbs as $grb)
+                                    <option value="{{ $grb }}" @selected(old('grb_disposal') == $grb)>{{ $grb }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Housing Status:</label>
-                                <select class="form-control" name="purok" id="">
-                                    <option value="" selected>--Please Select--</option>
-                                    <option value="h1">H1</option>
-                                    <option value="h2">H2</option>
-                                    <option value="h3">H3</option>
-                                    <option value="h4">H4</option>
-                                    <option value="h5">H5</option>
-                                </select>
+                            <select class="form-control" name="housing_status" id="">
+                                <option value="" selected>--Please Select--</option>
+                                @foreach ($h_statuses as $hs)
+                                    <option value="{{ $hs }}" @selected(old('housing_status') == $hs)>{{ $hs }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
-						<div class="form-group col-md-3">
+                        <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Source of Drinking Water:</label>
-                                <select class="form-control" name="water_source" id="">
-                                    <option value="">--Please Select--</option>
-                                    <option value="lvl1">Level 1</option>
-                                    <option value="lvl2">Level 2</option>
-                                    <option value="lvl3">Level 3</option>
-                                </select>
+                            <select class="form-control" name="water_source" id="">
+                                <option value="">--Please Select--</option>
+                                @foreach ($w_source as $water)
+                                    <option value="{{ $water }}" @selected(old('water_source') == $water)>{{ $water }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Family Planning:</label>
-                                <select class="form-control" name="fam_planning" id="">
-                                    <option value="">--Please Select--</option>
-                                    <option value="pill">Pills</option>
-                                    <option value="dmpa">DMPA</option>
-                                    <option value="smda">SMDA</option>
-                                    <option value="bll">BLL</option>
-                                    <option value="condom">Condom</option>
-                                    <option value="implant">Implant</option>
-                                    <option value="other">Others</option>
-                                </select>
+                            <select class="form-control" name="fam_planning" id="">
+                                <option value="">--Please Select--</option>
+                                @foreach ($fam_plans as $fam_plan)
+                                    <option value="{{ $fam_plan }}" @selected(old('fam_planning') == $fam_plan)>{{ $fam_plan }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="form-label font-weight-bolder">Electrication:</label>
-                                <select class="form-control" name="electricatian" id="">
-                                    <option value="">--Please Select--</option>
-                                    <option value="wcr">With Kontador</option>
-                                    <option value="wocr">Without Kontador</option>
-                                </select>
+                            <label class="form-label font-weight-bolder">Electrification:</label>
+                            <select class="form-control" name="electrification" id="">
+                                <option value="">--Please Select--</option>
+                                @foreach ($elecs as $elec)
+                                    <option value="{{ $elec }}" @selected(old('electrification') == $elec)>{{ $elec }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Environmental Sanitation:</label>
-                                <select class="form-control" name="env_sanitation" id="">
-                                    <option value="">--Please Select--</option>
-                                    <option value="wcr">With CR</option>
-                                    <option value="wocr">Without CR</option>
-                                </select>
+                            <select class="form-control" name="env_sanitation" id="">
+                                <option value="">--Please Select--</option>
+                                @foreach ($sanitation as $san)
+                                    <option value="{{ $san }}" @selected(old('env_sanitation') == $san)>{{ $san }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-                        
+
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Animal Owned:</label>
                             <input type="text" name="animal_owned" class="form-control" value=""
@@ -150,64 +158,70 @@
                 <x-card title="Family Member" data-item-container>
                     <button type="button" class="btn btn-primary mb-3" data-add-item>Add Family Member</button>
                     <div class="row border rounded-sm border-primary mt-3 pt-3 pb-3 " data-parent>
-                        <div class="col-md-12 d-flex flex-wrap"> 
+                        <div class="col-md-12 d-flex flex-wrap">
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Full Name:</label>
-                                <input type="text" name="" class="form-control" value="" placeholder="Enter Household No." />
+                                <input type="text" name="fullname[]" class="form-control" value=""
+                                    placeholder="Enter Fullname" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Gender:</label>
-                                    <select class="form-control" name="" id="">
-                                        <option value="">--Please Select--</option>
-                                    </select>
+                                <select class="form-control" name="gender[]" id="">
+                                    <option value="">--Please Select--</option>
+                                    @foreach ($genders as $gender)
+                                        <option value="{{ $gender }}" @selected(old('gender.0') == $gender)>
+                                            {{ $gender }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
-							<div class="form-group col-md-3">
+                            <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Birthdate:</label>
-                                <input type="date" name="" class="form-control" value="" placeholder="Enter Household No." />
+                                <input type="date" name="bdate[]" class="form-control" value=""
+                                    placeholder="Enter Birthdate" />
                             </div>
-							<div class="form-group col-md-3">
+                            <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Age:</label>
-                                <input type="date" name="" class="form-control" value="" placeholder="Enter Household No." />
+                                <input type="number" name="age[]" class="form-control" value=""
+                                    placeholder="Enter Age" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Religion:</label>
-                                <input type="text" name="" class="form-control" value="" placeholder="Enter Household No." />
+                                <input type="text" name="religion[]" class="form-control" value=""
+                                    placeholder="Enter Religion" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Marital Status:</label>
-                                    <select class="form-control" name="" id="">
-                                        <option value="">--Please Select--</option>
-										<option value="single">Single</option>
-										<option value="married">Married</option>
-										<option value="widowed">Widowed</option>
-										<option value="separated">Separated</option>
-                                    </select>
-                            </div> 
-                            <div class="form-group col-md-3">
-                                <label class="form-label font-weight-bolder">Types of PWD:</label>
-                                <input type="text" name="" class="form-control" value="" placeholder="Enter Household No." />
-                            </div> 
+                                <select class="form-control" name="marital_status[]">
+                                    <option value="">--Select Marital Status--</option>
+                                    @foreach ($status as $m_status)
+                                        <option value="{{ $m_status }}" @selected(old('marital_status.0') == $m_status)>
+                                            {{ $m_status }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Is a voter?</label>
-                                <div class="radio-inline">
-                                    <label class="radio">
-                                        <input type="radio" name="v_yes" value="vyes"/>
-                                        <span></span> 
-                                        Yes
-                                    </label>
-                                    <label class="radio">
-                                        <input type="radio" name="v_yes" value="vno"/>
-                                        <span></span>
-                                        No
-                                    </label> 
-                                </div> 
+                                <select name="is_voter[]" class="form-control">
+                                    <option value="">--Select--</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
                             </div>
-                            
-                        </div>
-                        <div class="d-none" data-item-hide>
-                            <button class="btn ml-8 btn-danger" type="button" data-remove-item>
-                                <i class="flaticon2-trash"></i> DELETE
-                            </button>
+                            <div class="form-group col-md-3">
+                                <label class="form-label font-weight-bolder">Type of PWD:</label>
+                                <div class="input-group">
+                                    <input type="text" name="pwd_type[]" class="form-control" value=""
+                                        placeholder="Enter PWD status" />
+                                    <div class="input-group-append d-none" data-item-hide>
+                                        <button class="btn btn-danger" type="button" data-remove-item>
+                                            <span class="flaticon2-trash"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <span class="text-muted small">Leave blank if not applicable</span>
+                            </div>
                         </div>
                     </div>
                     <x-slot:footer>
