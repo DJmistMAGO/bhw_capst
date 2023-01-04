@@ -14,7 +14,7 @@
     <div class="card card-custom gutter-b">
         <div class="card-header flex-wrap py-3">
             <div class="card-title">
-                <h2 class="card-label">List of Resident</h2>
+                <h2 class="card-label">LIST OF RESIDENTS</h2>
             </div>
             <div class="card-toolbar">
                 <form class="d-flex" role="search">
@@ -41,9 +41,11 @@
                             @if (auth()->user()->user_name == 'treseBHW')
                                 <td class="nowrap d-flex justify-content-center">
                                     <div class="d-flex justify-content-center">
-                                        <a href="" class="btn btn-sm btn-success mr-1"> VIEW </a>
-                                        <a href="" class="btn btn-sm btn-primary mr-1"> EDIT </a>
-                                        <a href="" class="btn btn-sm btn-danger mr-1"> DELETE </a>
+                                        <a href="{{ route('resident.show', $resident->id) }}"
+                                            class="btn btn-sm btn-success mr-1"> VIEW </a>
+                                        <a href="{{ route('resident.edit', $resident->id) }}"
+                                            class="btn btn-sm btn-primary mr-1"> EDIT </a>
+                                        {{-- @livewire('resident.delete', ['resident' => $resident], key($resident->id)) --}}
                                     </div>
                                 </td>
                             @endif
