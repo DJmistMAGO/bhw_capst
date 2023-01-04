@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\MainController;
