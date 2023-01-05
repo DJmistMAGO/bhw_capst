@@ -6,6 +6,7 @@ use App\Http\Controllers\HouseholdController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\ResidentController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ReportController;
 
 
 Route::middleware('guest')->group(function () {
@@ -42,4 +43,12 @@ Route::middleware('auth')->group(function () {
             Route::put('/update/{id}', 'update')->name('resident.update');
         });
     });
-});
+
+    Route::controller(ReportController::class)->group(function () {
+        Route::group([
+            'prefix' => 'report'
+        ], function () {
+            Route::get('/', 'index')->name('report.index'); 
+        });
+    });
+}); 
