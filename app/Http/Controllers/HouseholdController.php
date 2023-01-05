@@ -116,7 +116,7 @@ class HouseholdController extends Controller
         $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
         $choices = ['Yes', 'No'];
         $herbals = ['Vegetable Gardening', 'Root Crops'];
-        $grbs = ['Burning', 'Dumping', 'Segragating', 'Composting', 'Recycling'];
+        $grbs = ['Burning', 'Dumping'];
         $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
         $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
         $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BLL', 'Condom', 'Withdrawal', 'Abstinence', 'IUD', 'Implant'];
