@@ -41,10 +41,8 @@ class MainController extends Controller
         $useSalt = $households->where('salt', '==', 'Yes')->count();
         $herbalCount = $households->where('herbal', '!=', null)->count();
 
-        $withKon = $households->where('electrification', '==', 'With Kontador')->count();
-        $withSolar = $households->where('electrification', '==', 'Solar')->count();
+        $withElect = $households->where('electrification', '==', 'With Kontador')->count();
 
-        $withElect = $withKon + $withSolar;
         $withAnimal = $households->where('animal_owned', '!=', null)->count();
         $withVehicle = $households->where('vehicle', '!=', null)->count();
         $voterCount = $households->sum('total_voter');
