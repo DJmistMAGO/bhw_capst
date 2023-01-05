@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{household}', 'edit')->name('household.edit');
             Route::get('/show/{household}', 'show')->name('household.show');
             Route::put('/update/{id}', 'update')->name('household.update');
+            Route::get('autocomplete', 'autocomplete')->name('autocomplete');
         });
     });
 

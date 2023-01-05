@@ -17,9 +17,9 @@
                 <h2 class="card-label">LIST OF RESIDENTS</h2>
             </div>
             <div class="card-toolbar">
-                <form class="d-flex" role="search">
+                {{-- <form class="d-flex" role="search">
                     <input class="form-control search mr-2" type="search" placeholder="Search" aria-label="Search">
-                </form>
+                </form> --}}
             </div>
         </div>
         <div class="card-body table-responsive">
