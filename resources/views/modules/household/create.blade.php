@@ -15,7 +15,7 @@
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Household No.:<span
                                     class="text-danger">*</span></label>
-                            <input type="text" name="household_no" class="form-control" value="{{ old('household_no') }}"
+                            <input type="number" name="household_no" class="form-control" value="{{ old('household_no') }}"
                                 placeholder="Enter Household No." />
                         </div>
 

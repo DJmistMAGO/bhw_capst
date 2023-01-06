@@ -77,6 +77,9 @@
                     @endforelse
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {{ $households->links() }}
+            </div>
         </div>
     </div>
 @endsection
