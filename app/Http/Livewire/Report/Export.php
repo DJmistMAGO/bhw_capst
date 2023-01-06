@@ -124,123 +124,155 @@ class Export extends Component
 
                 $templateProcessor->setValue('f#' . ($key + 1), ' ');
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('j#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->swara == 'NHTS') {
-                            $templateProcessor->setValue('j#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('j#' . ($key + 1), ' ');
-                        }
-                    }
+ 
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('j#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->swara == 'NHTS') {
-                        $templateProcessor->setValue('j#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('j#' . ($key + 1), ' ');
-                    }
+                    $swara = $households->where('id', $member->household_id)->first()->swara;
+                    $templateProcessor->setValue('j#' . ($key + 1), $swara == 'NHTS' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('k#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->swara == 'NHTS Non 4PCS') {
-                            $templateProcessor->setValue('k#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('k#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('k#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->swara == 'NHTS Non 4PCS') {
-                        $templateProcessor->setValue('k#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('k#' . ($key + 1), ' ');
-                    }
+                    $swara = $households->where('id', $member->household_id)->first()->swara;
+                    $templateProcessor->setValue('k#' . ($key + 1), $swara == 'NHTS Non 4PCS' ? '✔' : ' ');
                 }
 
-
-                // new code revised
                 if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
                     $templateProcessor->setValue('l#' . ($key + 1), '');
                 } else {
                     $swara = $households->where('id', $member->household_id)->first()->swara;
                     $templateProcessor->setValue('l#' . ($key + 1), $swara == 'Non NHTS' ? '✔' : ' ');
                 }
-                // end of revision
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('m#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->salt == 'Yes') {
-                            $templateProcessor->setValue('m#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('m#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('m#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->salt == 'Yes') {
-                        $templateProcessor->setValue('m#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('m#' . ($key + 1), ' ');
-                    }
+                    $salt = $households->where('id', $member->household_id)->first()->salt;
+                    $templateProcessor->setValue('m#' . ($key + 1), $salt == 'Yes' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('o#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->salt == 'No') {
-                            $templateProcessor->setValue('o#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('o#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('o#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->salt == 'No') {
-                        $templateProcessor->setValue('o#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('o#' . ($key + 1), ' ');
-                    }
+                    $salt = $households->where('id', $member->household_id)->first()->salt;
+                    $templateProcessor->setValue('o#' . ($key + 1), $salt == 'No' ? '✔' : ' ');
+                }
+                
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('p#' . ($key + 1), '');
+                } else {
+                    $herbal = $households->where('id', $member->household_id)->first()->herbal;
+                    $templateProcessor->setValue('p#' . ($key + 1), $herbal == 'Vegetable Gardening' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('p#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->herbal == 'Vegetable Gardening') {
-                            $templateProcessor->setValue('p#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('p#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('q#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->herbal == 'Vegetable Gardening') {
-                        $templateProcessor->setValue('p#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('p#' . ($key + 1), ' ');
-                    }
+                    $herbal = $households->where('id', $member->household_id)->first()->herbal;
+                    $templateProcessor->setValue('q#' . ($key + 1), $herbal == 'Root Crops' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('q#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->herbal == 'Root Crops') {
-                            $templateProcessor->setValue('q#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('q#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('r#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->herbal == 'Root Crops') {
-                        $templateProcessor->setValue('q#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('q#' . ($key + 1), ' ');
-                    }
+                    $grb_disposal = $households->where('id', $member->household_id)->first()->grb_disposal;
+                    $templateProcessor->setValue('r#' . ($key + 1), $grb_disposal == 'Burning' ? '✔' : ' ');
                 }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('s#' . ($key + 1), '');
+                } else {
+                    $grb_disposal = $households->where('id', $member->household_id)->first()->grb_disposal;
+                    $templateProcessor->setValue('s#' . ($key + 1), $grb_disposal == 'Dumping' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('t#' . ($key + 1), '');
+                } else {
+                    $housing_status = $households->where('id', $member->household_id)->first()->housing_status;
+                    $templateProcessor->setValue('t#' . ($key + 1), $housing_status == 'H1' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('u#' . ($key + 1), '');
+                } else {
+                    $housing_status = $households->where('id', $member->household_id)->first()->housing_status;
+                    $templateProcessor->setValue('u#' . ($key + 1), $housing_status == 'H2' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('v#' . ($key + 1), '');
+                } else {
+                    $housing_status = $households->where('id', $member->household_id)->first()->housing_status;
+                    $templateProcessor->setValue('v#' . ($key + 1), $housing_status == 'H3' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('w#' . ($key + 1), '');
+                } else {
+                    $housing_status = $households->where('id', $member->household_id)->first()->housing_status;
+                    $templateProcessor->setValue('w#' . ($key + 1), $housing_status == 'H4' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('x#' . ($key + 1), '');
+                } else {
+                    $housing_status = $households->where('id', $member->household_id)->first()->housing_status;
+                    $templateProcessor->setValue('x#' . ($key + 1), $housing_status == 'H5' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('y#' . ($key + 1), '');
+                } else {
+                    $water_source = $households->where('id', $member->household_id)->first()->water_source;
+                    $templateProcessor->setValue('y#' . ($key + 1), $water_source == 'Level 1 - Faucet' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('z#' . ($key + 1), '');
+                } else {
+                    $water_source = $households->where('id', $member->household_id)->first()->water_source;
+                    $templateProcessor->setValue('z#' . ($key + 1), $water_source == 'Level 2 - Hand Pump' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('aa#' . ($key + 1), '');
+                } else {
+                    $water_source = $households->where('id', $member->household_id)->first()->water_source;
+                    $templateProcessor->setValue('aa#' . ($key + 1), $water_source == 'Level 3 - Deep Well' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('ad#' . ($key + 1), '');
+                } else {
+                    $electrification = $households->where('id', $member->household_id)->first()->electrification;
+                    $templateProcessor->setValue('ad#' . ($key + 1), $electrification == 'With Kontador' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('ae#' . ($key + 1), '');
+                } else {
+                    $electrification = $households->where('id', $member->household_id)->first()->electrification;
+                    $templateProcessor->setValue('ae#' . ($key + 1), $electrification == 'Without Kontador' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('ah#' . ($key + 1), '');
+                } else {
+                    $env_sanitation = $households->where('id', $member->household_id)->first()->env_sanitation;
+                    $templateProcessor->setValue('ah#' . ($key + 1), $env_sanitation == 'With CR' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('ai#' . ($key + 1), '');
+                } else {
+                    $env_sanitation = $households->where('id', $member->household_id)->first()->env_sanitation;
+                    $templateProcessor->setValue('ai#' . ($key + 1), $env_sanitation == 'Without CR' ? '✔' : ' ');
+                }
+
+
 
 
                 $i++;

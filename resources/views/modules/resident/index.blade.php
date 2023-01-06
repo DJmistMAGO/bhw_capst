@@ -59,6 +59,9 @@
                     @endforelse
                 </tbody>
             </table>
+            <div class="d-flex justify-content-center">
+                {{ $residents->links() }}
+            </div>
         </div>
     </div>
 @endsection
