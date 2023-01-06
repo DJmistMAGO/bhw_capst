@@ -17,9 +17,10 @@
                 <h2 class="card-label">LIST OF HOUSEHOLD</h2>
             </div>
             <div class="card-toolbar">
-                <form class="d-flex" role="search">
-                    <input class="form-control search mr-2" type="search" placeholder="Search" aria-label="Search">
-                </form>
+                {{-- <form class="d-flex" role="search">
+                    <input class="form-control search mr-2" type="search" id="search"  placeholder="Search" aria-label="Search">
+                     <button type="submit" class="btn btn-light-primary font-weight-bold mr-4"><i class="flaticon2-magnifier-tool"></i></button> 
+                </form> --}}
                 @if (auth()->user()->user_name == 'treseBHW')
                     <a href="{{ route('household.create') }}" class="btn btn-primary font-weight-bolder">
                         <span class="svg-icon svg-icon-md">
@@ -82,4 +83,5 @@
 
 @push('scripts')
     @livewireScripts
+
 @endpush

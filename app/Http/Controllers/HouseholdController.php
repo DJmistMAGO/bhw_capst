@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Household\StoreRequest;
 use App\Http\Requests\Household\UpdateRequest;
 
+
 class HouseholdController extends Controller
 {
 
@@ -198,4 +199,6 @@ class HouseholdController extends Controller
 
         return redirect()->route('household.index')->with('success', 'Household updated successfully!');
     }
+
+    
 }
