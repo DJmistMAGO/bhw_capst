@@ -36,7 +36,7 @@
                     @forelse ($residents as $resident)
                         <tr>
                             <td class="text-muted">{{ $loop->iteration }}</td>
-                            <td>{{ $resident->household->household_no ?: '' }}</td>
+                            <td>{{ $resident->household?->household_no ?? '' }}</td>
                             <td>{{ $resident->fullname }}</td>
                             <td>{{ date('F d, Y', strtotime($resident->bdate)) }}</td>
                             <td>{{ $resident->household->purok }}</td>
