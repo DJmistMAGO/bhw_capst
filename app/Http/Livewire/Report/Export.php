@@ -224,6 +224,28 @@ class Export extends Component
             $templateProcessor->setValue('tc', $members->where('gender', 'Female')->where('pwd_type', '!=', null)->count());
             $templateProcessor->setValue('td', $members->where('age', '>=', 60)->where('gender', 'Male')->count());
             $templateProcessor->setValue('te', $members->where('age', '>=', 60)->where('gender', 'Female')->count());
+            $templateProcessor->setValue('tf', $households->where('swara',  'NHTS')->count());
+            $templateProcessor->setValue('tg', $households->where('swara',  'NHTS Non 4PCS')->count());
+            $templateProcessor->setValue('th', $households->where('swara',  'Non NHTS')->count());
+            $templateProcessor->setValue('ti', $households->where('salt',  'Yes')->count());
+            $templateProcessor->setValue('tj', $households->where('salt',  'No')->count());
+            $templateProcessor->setValue('tk', $households->where('herbal',  'Vegetable Gardening')->count());
+            $templateProcessor->setValue('tl', $households->where('herbal',  'Root Crops')->count());
+            $templateProcessor->setValue('tm', $households->where('grb_disposal',  'Burning')->count());
+            $templateProcessor->setValue('tn', $households->where('grb_disposal',  'Dumping')->count());
+            $templateProcessor->setValue('to', $households->where('housing_status',  'H1')->count());
+            $templateProcessor->setValue('tp', $households->where('housing_status',  'H2')->count());
+            $templateProcessor->setValue('tq', $households->where('housing_status',  'H3')->count());
+            $templateProcessor->setValue('tr', $households->where('housing_status',  'H4')->count());
+            $templateProcessor->setValue('ts', $households->where('housing_status',  'H5')->count());
+            $templateProcessor->setValue('tt', $households->where('water_source',  'Level 1 - Faucet')->count());
+            $templateProcessor->setValue('tu', $households->where('water_source',  'Level 2 - Hand Pump')->count());
+            $templateProcessor->setValue('tv', $households->where('water_source',  'Level 3 - Deep Well')->count());
+            $templateProcessor->setValue('tw', $households->sum('total_voter'));
+            $templateProcessor->setValue('tx', $households->where('electrification',  'With Kontador')->count());
+            $templateProcessor->setValue('ty', $households->where('electrification',  'Without Kontador')->count());
+            $templateProcessor->setValue('tz', $households->where('env_sanitation',  'With CR')->count());
+            $templateProcessor->setValue('t1', $households->where('env_sanitation',  'Without CR')->count());
         }
 
 
