@@ -170,6 +170,78 @@ class Export extends Component
                 }
                 // end of revision
 
+                if ($key > 0) {
+                    if ($member->household_id == $members[$key - 1]->household_id) {
+                        $templateProcessor->setValue('m#' . ($key + 1), '');
+                    } else {
+                        if ($households->where('id', $member->household_id)->first()->salt == 'Yes') {
+                            $templateProcessor->setValue('m#' . ($key + 1), '✔');
+                        } else {
+                            $templateProcessor->setValue('m#' . ($key + 1), ' ');
+                        }
+                    }
+                } else {
+                    if ($households->where('id', $member->household_id)->first()->salt == 'Yes') {
+                        $templateProcessor->setValue('m#' . ($key + 1), '✔');
+                    } else {
+                        $templateProcessor->setValue('m#' . ($key + 1), ' ');
+                    }
+                }
+
+                if ($key > 0) {
+                    if ($member->household_id == $members[$key - 1]->household_id) {
+                        $templateProcessor->setValue('o#' . ($key + 1), '');
+                    } else {
+                        if ($households->where('id', $member->household_id)->first()->salt == 'No') {
+                            $templateProcessor->setValue('o#' . ($key + 1), '✔');
+                        } else {
+                            $templateProcessor->setValue('o#' . ($key + 1), ' ');
+                        }
+                    }
+                } else {
+                    if ($households->where('id', $member->household_id)->first()->salt == 'No') {
+                        $templateProcessor->setValue('o#' . ($key + 1), '✔');
+                    } else {
+                        $templateProcessor->setValue('o#' . ($key + 1), ' ');
+                    }
+                }
+
+                if ($key > 0) {
+                    if ($member->household_id == $members[$key - 1]->household_id) {
+                        $templateProcessor->setValue('p#' . ($key + 1), '');
+                    } else {
+                        if ($households->where('id', $member->household_id)->first()->herbal == 'Vegetable Gardening') {
+                            $templateProcessor->setValue('p#' . ($key + 1), '✔');
+                        } else {
+                            $templateProcessor->setValue('p#' . ($key + 1), ' ');
+                        }
+                    }
+                } else {
+                    if ($households->where('id', $member->household_id)->first()->herbal == 'Vegetable Gardening') {
+                        $templateProcessor->setValue('p#' . ($key + 1), '✔');
+                    } else {
+                        $templateProcessor->setValue('p#' . ($key + 1), ' ');
+                    }
+                }
+
+                if ($key > 0) {
+                    if ($member->household_id == $members[$key - 1]->household_id) {
+                        $templateProcessor->setValue('q#' . ($key + 1), '');
+                    } else {
+                        if ($households->where('id', $member->household_id)->first()->herbal == 'Root Crops') {
+                            $templateProcessor->setValue('q#' . ($key + 1), '✔');
+                        } else {
+                            $templateProcessor->setValue('q#' . ($key + 1), ' ');
+                        }
+                    }
+                } else {
+                    if ($households->where('id', $member->household_id)->first()->herbal == 'Root Crops') {
+                        $templateProcessor->setValue('q#' . ($key + 1), '✔');
+                    } else {
+                        $templateProcessor->setValue('q#' . ($key + 1), ' ');
+                    }
+                }
+
 
                 $i++;
             }
