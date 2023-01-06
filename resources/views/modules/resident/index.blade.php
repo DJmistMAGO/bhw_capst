@@ -28,6 +28,7 @@
                     <th class="text-muted">#</th>
                     <th>Household No.</th>
                     <th>Resident Name</th>
+                    <th>Birth date</th>
                     <th>Purok</th>
                     <th class="text-center">Actions</th>
                 </thead>
@@ -37,6 +38,7 @@
                             <td class="text-muted">{{ $loop->iteration }}</td>
                             <td>{{ $resident->household->household_no }}</td>
                             <td>{{ $resident->fullname }}</td>
+                            <td>{{ date('F d, Y', strtotime($resident->bdate)) }}</td>
                             <td>{{ $resident->household->purok }}</td>
                             @if (auth()->user()->user_name == 'treseBHW')
                                 <td class="nowrap d-flex justify-content-center">
