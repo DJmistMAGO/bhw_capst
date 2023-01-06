@@ -246,7 +246,7 @@
                     <div class="mb-0">
                         <div class="row row-paddingless">
                             <!--begin::Item-->
-                            <div class="col mt-1">
+                            <div class="col-md-4 mt-1">
                                 <div class="d-flex align-items-center mr-2">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-45 symbol-light-primary mr-4 flex-shrink-0">
@@ -280,7 +280,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col mt-1">
+                            <div class="col-md-4 mt-1">
                                 <div class="d-flex align-items-center mr-2">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-45 symbol-light-primary mr-4 flex-shrink-0">
@@ -314,7 +314,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col mt-1">
+                            <div class="col-md-4 mt-1">
                                 <div class="d-flex align-items-center mr-2">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-45 symbol-light-primary mr-4 flex-shrink-0">
@@ -348,7 +348,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col mt-1">
+                            <div class="col-md-4 mt-1">
                                 <div class="d-flex align-items-center mr-2">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-45 symbol-light-primary mr-4 flex-shrink-0">
@@ -382,7 +382,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col mt-1">
+                            <div class="col-md-4 mt-1">
                                 <div class="d-flex align-items-center mr-2">
                                     <!--begin::Symbol-->
                                     <div class="symbol symbol-45 symbol-light-primary mr-4 flex-shrink-0">
@@ -424,7 +424,7 @@
         </div>
         <div class="col-md-6">
             <div class="card card-custom gutter-b">
-                <!--begin::Header-->
+                <!--begin::Housingeader-->
                 <div class="card-header border-0 ">
                     <div class="card-title">
                         <div class="card-label">
