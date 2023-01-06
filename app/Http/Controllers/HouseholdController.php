@@ -28,7 +28,7 @@ class HouseholdController extends Controller
         $grbs = ['Burning', 'Dumping'];
         $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
         $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
-        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BLL', 'Condom', 'Withdrawal', 'Abstinence', 'IUD', 'Implant'];
+        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BTL', 'LAM', 'CONDOM', '', 'IUD', 'Implant'];
         $elecs = ['With Kontador', 'Without Kontador'];
         $sanitation = ['With CR', 'Without CR'];
         $genders = ['Male', 'Female'];
@@ -101,7 +101,8 @@ class HouseholdController extends Controller
         $grbs = ['Burning', 'Dumping'];
         $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
         $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
-        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BLL', 'Condom', 'Withdrawal', 'Abstinence', 'IUD', 'Implant'];
+        $fam_plans =
+            ['Pills', 'DMPA', 'SMDA', 'BTL', 'LAM', 'CONDOM', '', 'IUD', 'Implant'];
         $elecs = ['With Kontador', 'Without Kontador'];
         $sanitation = ['With CR', 'Without CR'];
         $genders = ['Male', 'Female'];
@@ -120,7 +121,8 @@ class HouseholdController extends Controller
         $grbs = ['Burning', 'Dumping'];
         $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
         $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
-        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BLL', 'Condom', 'Withdrawal', 'Abstinence', 'IUD', 'Implant'];
+        $fam_plans =
+            ['Pills', 'DMPA', 'SMDA', 'BTL', 'LAM', 'CONDOM', '', 'IUD', 'Implant'];
         $elecs = ['With Kontador', 'Without Kontador'];
         $sanitation = ['With CR', 'Without CR'];
         $genders = ['Male', 'Female'];
@@ -199,6 +201,4 @@ class HouseholdController extends Controller
 
         return redirect()->route('household.index')->with('success', 'Household updated successfully!');
     }
-
-    
 }

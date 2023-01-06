@@ -18,12 +18,7 @@
             </div>
         </div>
         <div class="card-body table-responsive">
-            {{-- <a href="#" class="btn btn-lg col-md-12 btn-shadow mt-3 btn-success">
-                    <i class="flaticon2-pie-chart"></i>SURVEY SUMMARY BARANGAY
-                </a>  --}}
-            {{-- <a href="#" class="btn btn-lg col-md-12 mt-8 btn-shadow btn-success">
-                    <i class="flaticon2-pie-chart"></i>ACCOMPLISHMENT REPORT
-                </a> --}}
+            @livewire('report.purok-export')
             @livewire('report.export')
         </div>
     </div>
