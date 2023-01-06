@@ -124,132 +124,69 @@ class Export extends Component
 
                 $templateProcessor->setValue('f#' . ($key + 1), ' ');
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('j#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->swara == 'NHTS') {
-                            $templateProcessor->setValue('j#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('j#' . ($key + 1), ' ');
-                        }
-                    }
+ 
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('j#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->swara == 'NHTS') {
-                        $templateProcessor->setValue('j#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('j#' . ($key + 1), ' ');
-                    }
+                    $swara = $households->where('id', $member->household_id)->first()->swara;
+                    $templateProcessor->setValue('j#' . ($key + 1), $swara == 'NHTS' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('k#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->swara == 'NHTS Non 4PCS') {
-                            $templateProcessor->setValue('k#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('k#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('k#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->swara == 'NHTS Non 4PCS') {
-                        $templateProcessor->setValue('k#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('k#' . ($key + 1), ' ');
-                    }
+                    $swara = $households->where('id', $member->household_id)->first()->swara;
+                    $templateProcessor->setValue('k#' . ($key + 1), $swara == 'NHTS Non 4PCS' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('l#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->swara == 'Non NHTS') {
-                            $templateProcessor->setValue('l#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('l#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('l#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->swara == 'Non NHTS') {
-                        $templateProcessor->setValue('l#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('l#' . ($key + 1), ' ');
-                    }
+                    $swara = $households->where('id', $member->household_id)->first()->swara;
+                    $templateProcessor->setValue('l#' . ($key + 1), $swara == 'Non NHTS' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('m#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->salt == 'Yes') {
-                            $templateProcessor->setValue('m#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('m#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('m#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->salt == 'Yes') {
-                        $templateProcessor->setValue('m#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('m#' . ($key + 1), ' ');
-                    }
+                    $salt = $households->where('id', $member->household_id)->first()->salt;
+                    $templateProcessor->setValue('m#' . ($key + 1), $salt == 'Yes' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('o#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->salt == 'No') {
-                            $templateProcessor->setValue('o#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('o#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('o#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->salt == 'No') {
-                        $templateProcessor->setValue('o#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('o#' . ($key + 1), ' ');
-                    }
+                    $salt = $households->where('id', $member->household_id)->first()->salt;
+                    $templateProcessor->setValue('o#' . ($key + 1), $salt == 'No' ? '✔' : ' ');
+                }
+                
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('p#' . ($key + 1), '');
+                } else {
+                    $herbal = $households->where('id', $member->household_id)->first()->herbal;
+                    $templateProcessor->setValue('p#' . ($key + 1), $herbal == 'Vegetable Gardening' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('p#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->herbal == 'Vegetable Gardening') {
-                            $templateProcessor->setValue('p#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('p#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('q#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->herbal == 'Vegetable Gardening') {
-                        $templateProcessor->setValue('p#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('p#' . ($key + 1), ' ');
-                    }
+                    $herbal = $households->where('id', $member->household_id)->first()->herbal;
+                    $templateProcessor->setValue('q#' . ($key + 1), $herbal == 'Root Crops' ? '✔' : ' ');
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('q#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->herbal == 'Root Crops') {
-                            $templateProcessor->setValue('q#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('q#' . ($key + 1), ' ');
-                        }
-                    }
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('r#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->herbal == 'Root Crops') {
-                        $templateProcessor->setValue('q#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('q#' . ($key + 1), ' ');
-                    }
+                    $grb_disposal = $households->where('id', $member->household_id)->first()->grb_disposal;
+                    $templateProcessor->setValue('r#' . ($key + 1), $grb_disposal == 'Burning' ? '✔' : ' ');
                 }
 
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('s#' . ($key + 1), '');
+                } else {
+                    $grb_disposal = $households->where('id', $member->household_id)->first()->grb_disposal;
+                    $templateProcessor->setValue('s#' . ($key + 1), $grb_disposal == 'Dumping' ? '✔' : ' ');
+                }
 
                 $i++;
             }
