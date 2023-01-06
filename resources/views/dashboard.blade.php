@@ -614,8 +614,8 @@
         var options = {
             series: [{
                 name: 'Total',
-                data: [{{ $p1Count }}, {{ $p2Count }}, {{ $p3Count }}, {{ $p4Count }},
-                    {{ $p5Count }}, {{ $p6Count }}
+                data: [{{ $res_p1 }}, {{ $res_p2 }}, {{ $res_p3 }}, {{ $res_p4 }},
+                    {{ $res_p5 }}, {{ $res_sitio }}
                 ]
             }],
             chart: {

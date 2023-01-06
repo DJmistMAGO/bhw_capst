@@ -47,14 +47,42 @@ class MainController extends Controller
         $withVehicle = $households->where('vehicle', '!=', null)->count();
         $voterCount = $households->sum('total_voter');
 
-        $p1Count = $households->where('purok', '==', 'Purok 1')->count();
-        $p2Count = $households->where('purok', '==', 'Purok 2')->count();
-        $p3Count = $households->where('purok', '==', 'Purok 3')->count();
-        $p4Count = $households->where('purok', '==', 'Purok 4')->count();
-        $p5Count = $households->where('purok', '==', 'Purok 5')->count();
-        $p6Count = $households->where('purok', '==', 'Sitio Matanac')->count();
+        $households = $households->sortBy('purok');
+        $households_purok1 = $households->where('purok', 'Purok 1');
+        $households_purok2 = $households->where('purok', 'Purok 2');
+        $households_purok3 = $households->where('purok', 'Purok 3');
+        $households_purok4 = $households->where('purok', 'Purok 4');
+        $households_purok5 = $households->where('purok', 'Purok 5');
+        $households_sitio = $households->where('purok', 'Sitio Matanac');
 
 
-        return view('dashboard', compact('resCount', 'male', 'female', 'households', 'families', 'houseCount', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'wsL1', 'wsL2', 'wsL3', 'pwdCount', 'seniorCount', 'voterCount', 'withSanitation', 'useSalt', 'herbalCount', 'withElect', 'withAnimal', 'withVehicle', 'p1Count', 'p2Count', 'p3Count', 'p4Count', 'p5Count', 'p6Count'));
+        $res_p1 = $households_purok1->map(function ($household) {
+            return $household->residents->count();
+        })->sum();
+
+        $res_p2 = $households_purok2->map(function ($household) {
+            return $household->residents->count();
+        })->sum();
+
+        $res_p3 = $households_purok3->map(function ($household) {
+            return $household->residents->count();
+        })->sum();
+
+        $res_p4 = $households_purok4->map(function ($household) {
+            return $household->residents->count();
+        })->sum();
+
+        $res_p5 = $households_purok5->map(function ($household) {
+            return $household->residents->count();
+        })->sum();
+
+        $res_sitio = $households_sitio->map(function ($household) {
+            return $household->residents->count();
+        })->sum();
+
+
+
+
+        return view('dashboard', compact('resCount', 'male', 'female', 'households', 'families', 'houseCount', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'wsL1', 'wsL2', 'wsL3', 'pwdCount', 'seniorCount', 'voterCount', 'withSanitation', 'useSalt', 'herbalCount', 'withElect', 'withAnimal', 'withVehicle', 'res_p1', 'res_p2', 'res_p3', 'res_p4', 'res_p5', 'res_sitio'));
     }
 }
