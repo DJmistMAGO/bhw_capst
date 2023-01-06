@@ -17,47 +17,7 @@ class Export extends Component
         $templateProcessor = new TemplateProcessor($path);
 
         $households = Household::with('residents')->get();
-        $residents = Resident::all();
-
-
-        // $resCount = $residents->count();
-        $male = $residents->where('gender', 'Male')->count();
-        $female = $residents->where('gender', 'Female')->count();
-        $families = $households->sum('total_fam');
-
-        $h1 = $households->where('housing_status', 'H1')->count();
-        $h2 = $households->where('housing_status', 'H2')->count();
-        $h3 = $households->where('housing_status', 'H3')->count();
-        $h4 = $households->where('housing_status', 'H4')->count();
-        $h5 = $households->where('housing_status', 'H5')->count();
-        $h6 = $households->where('housing_status', 'H6')->count();
-
-        $wsL1 = $households->where('water_source', 'Level 1 - Faucet')->count();
-        $wsL2 = $households->where('water_source', 'Level 2 - Hand Pump')->count();
-        $wsL3 = $households->where('water_source', 'Level 3 - Deep Well')->count();
-
-        $pwdCount = $households->sum('total_pwd');
-        $seniorCount = $households->sum('total_senior');
-
-        $malePwd = $residents->where('pwd_type', '!=', null)->where('gender', '==', 'Male')->count();
-        $femalePwd = $residents->where('pwd_type', '!=', null)->where('gender', '==', 'Female')->count();
-
-        $withSanitation = $households->where('env_sanitation', '==', 'Without CR')->count();
-        $useSalt = $households->where('salt', '==', 'Yes')->count();
-        $herbalCount = $households->where('herbal', '!=', null)->count();
-
-        $withElect = $households->where('electrification', '==', 'With Kontador')->count();
-
-        $withAnimal = $households->where('animal_owned', '!=', null)->count();
-        $withVehicle = $households->where('vehicle', '!=', null)->count();
-        $voterCount = $households->sum('total_voter');
-
-        $p1Count = $households->where('purok', '==', 'Purok 1')->count();
-        $p2Count = $households->where('purok', '==', 'Purok 2')->count();
-        $p3Count = $households->where('purok', '==', 'Purok 3')->count();
-        $p4Count = $households->where('purok', '==', 'Purok 4')->count();
-        $p5Count = $households->where('purok', '==', 'Purok 5')->count();
-        $p6Count = $households->where('purok', '==', 'Sitio Matanac')->count();
+        // $residents = Resident::all();
 
         $templateProcessor->setValue('year', date('Y'));
 
@@ -81,50 +41,31 @@ class Export extends Component
             foreach ($members as $key => $member) {
                 $templateProcessor->setValue('n#' . ($key + 1), $i);
                 $templateProcessor->setValue('name#' . ($key + 1), $member->fullname);
+
                 if ($member->gender == "Male") {
                     $templateProcessor->setValue('a#' . ($key + 1), "M");
                 } else {
                     $templateProcessor->setValue('a#' . ($key + 1), "F");
                 }
+
                 $templateProcessor->setValue('b#' . ($key + 1), $member->age);
                 $templateProcessor->setValue('bdate#' . ($key + 1), $member->bdate);
                 $templateProcessor->setValue('c#' . ($key + 1), $member->marital_status);
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('d#' . ($key + 1), '');
-                    } else {
-                        $templateProcessor->setValue('d#' . ($key + 1), $households->where('id', $member->household_id)->first()->household_no);
-                    }
-                } else {
+                if ($key == 0 || $member->household_id != $members[$key - 1]->household_id) {
                     $templateProcessor->setValue('d#' . ($key + 1), $households->where('id', $member->household_id)->first()->household_no);
+                } else {
+                    $templateProcessor->setValue('d#' . ($key + 1), '');
                 }
 
-                if ($member->gender == "Male" && $member->pwd_type != null) {
-                    $templateProcessor->setValue('e#' . ($key + 1), '✔');
-                } else {
-                    $templateProcessor->setValue('e#' . ($key + 1), ' ');
-                }
-                if ($member->gender == "Female" && $member->pwd_type != null) {
-                    $templateProcessor->setValue('g#' . ($key + 1), '✔');
-                } else {
-                    $templateProcessor->setValue('g#' . ($key + 1), ' ');
-                }
 
-                if ($member->age >= 60 && $member->gender == "Male") {
-                    $templateProcessor->setValue('h#' . ($key + 1), '✔');
-                } else {
-                    $templateProcessor->setValue('h#' . ($key + 1), ' ');
-                }
-                if ($member->age >= 60 && $member->gender == "Female") {
-                    $templateProcessor->setValue('i#' . ($key + 1), '✔');
-                } else {
-                    $templateProcessor->setValue('i#' . ($key + 1), ' ');
-                }
-
+                $templateProcessor->setValue('e#' . ($key + 1), $member->gender == "Male" && $member->pwd_type != null ? '✔' : ' ');
+                $templateProcessor->setValue('g#' . ($key + 1), $member->gender == "Female" && $member->pwd_type != null ? '✔' : ' ');
+                $templateProcessor->setValue('h#' . ($key + 1), $member->age >= 60 && $member->gender == "Male" ? '✔' : ' ');
+                $templateProcessor->setValue('i#' . ($key + 1), $member->age >= 60 && $member->gender == "Female" ? '✔' : ' ');
                 $templateProcessor->setValue('f#' . ($key + 1), ' ');
 
- 
+
                 if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
                     $templateProcessor->setValue('j#' . ($key + 1), '');
                 } else {
@@ -159,7 +100,7 @@ class Export extends Component
                     $salt = $households->where('id', $member->household_id)->first()->salt;
                     $templateProcessor->setValue('o#' . ($key + 1), $salt == 'No' ? '✔' : ' ');
                 }
-                
+
                 if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
                     $templateProcessor->setValue('p#' . ($key + 1), '');
                 } else {
@@ -272,16 +213,18 @@ class Export extends Component
                     $templateProcessor->setValue('ai#' . ($key + 1), $env_sanitation == 'Without CR' ? '✔' : ' ');
                 }
 
-
-
-
+                $templateProcessor->setValue('ac#' . ($key + 1), $member->is_voter == "true"  ? '✔' : ' ');
                 $i++;
             }
+
+            $total_fam = $households->sum('total_fam');
+            $templateProcessor->setValue('ta', $total_fam);
+
+            $templateProcessor->setValue('tb', $members->where('gender', 'Male')->where('pwd_type', '!=', null)->count());
+            $templateProcessor->setValue('tc', $members->where('gender', 'Female')->where('pwd_type', '!=', null)->count());
+            $templateProcessor->setValue('td', $members->where('age', '>=', 60)->where('gender', 'Male')->count());
+            $templateProcessor->setValue('te', $members->where('age', '>=', 60)->where('gender', 'Female')->count());
         }
-
-
-
-
 
 
         $filename = 'acc-' . date('Y-m-d');
