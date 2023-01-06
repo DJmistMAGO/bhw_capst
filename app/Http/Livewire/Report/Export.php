@@ -160,23 +160,15 @@ class Export extends Component
                     }
                 }
 
-                if ($key > 0) {
-                    if ($member->household_id == $members[$key - 1]->household_id) {
-                        $templateProcessor->setValue('l#' . ($key + 1), '');
-                    } else {
-                        if ($households->where('id', $member->household_id)->first()->swara == 'Non NHTS') {
-                            $templateProcessor->setValue('l#' . ($key + 1), '✔');
-                        } else {
-                            $templateProcessor->setValue('l#' . ($key + 1), ' ');
-                        }
-                    }
+
+                // new code revised
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('l#' . ($key + 1), '');
                 } else {
-                    if ($households->where('id', $member->household_id)->first()->swara == 'Non NHTS') {
-                        $templateProcessor->setValue('l#' . ($key + 1), '✔');
-                    } else {
-                        $templateProcessor->setValue('l#' . ($key + 1), ' ');
-                    }
+                    $swara = $households->where('id', $member->household_id)->first()->swara;
+                    $templateProcessor->setValue('l#' . ($key + 1), $swara == 'Non NHTS' ? '✔' : ' ');
                 }
+                // end of revision
 
 
                 $i++;
