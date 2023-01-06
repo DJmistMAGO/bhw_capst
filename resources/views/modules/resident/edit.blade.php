@@ -32,12 +32,12 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Birthdate:</label>
-                                <input type="date" name="bdate" class="form-control" value="{{ $resident->bdate }}"
-                                    placeholder="Enter Birthdate" />
+                                <input type="date" name="bdate" class="form-control bdate"
+                                    value="{{ $resident->bdate }}" placeholder="Enter Birthdate" />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Age:</label>
-                                <input type="number" name="age" class="form-control" value="{{ $resident->age }}"
+                                <input type="text" name="age" class="form-control age" value="{{ $resident->age }}"
                                     placeholder="Enter Age" />
                             </div>
                             <div class="form-group col-md-3">
@@ -86,3 +86,15 @@
         </div>
     </form>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.bdate').on('change', function() {
+                var bdate = $(this).val();
+                var age = moment().diff(bdate, 'years');
+                $('.age').val(age);
+            });
+        });
+    </script>
+@endpush

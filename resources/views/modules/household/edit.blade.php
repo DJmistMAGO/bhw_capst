@@ -160,11 +160,11 @@
 
         <div class="row">
             <div class="col-md-12">
-                <x-card title="Family Member" data-item-container>
+                <x-card title="Family Member" data-item-container id="famMem">
                     <button type="button" class="btn btn-primary mb-3" data-add-item>Add Family Member</button>
                     @foreach ($household->residents as $resident)
                         <div class="row border rounded-sm border-primary mt-3 pt-3 pb-3 "
-                            {{ $loop->first ? 'data-parent' : '' }}>
+                            {{ $loop->first ? 'data-parent' : '' }} id="famItems">
                             <input type="hidden" name="memberId[]" value="{{ $resident->id }}">
                             <div class="col-md-12 d-flex flex-wrap">
                                 <div class="form-group col-md-3">
@@ -185,13 +185,13 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label class="form-label font-weight-bolder">Birthdate:</label>
-                                    <input type="date" name="bdate[]" class="form-control"
+                                    <input type="date" name="bdate[]" class="form-control bdate"
                                         value="{{ $resident->bdate }}" placeholder="Enter Birthdate" />
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label class="form-label font-weight-bolder">Age:</label>
-                                    <input type="number" name="age[]" class="form-control"
-                                        value="{{ $resident->age }}" placeholder="Enter Age" />
+                                    <label class="form-label font-weight-bolder">Age (*in years)</label>
+                                    <input type="text" name="age[]" class="form-control age"
+                                        value="{{ $resident->age }}" placeholder="0" readonly />
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label class="form-label font-weight-bolder">Religion:</label>
@@ -244,3 +244,18 @@
         </div>
     </form>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#famMem').on('input change', '#famItems .bdate', function() {
+                $(this).closest('#famItems').find('.bdate', '.age').each(function() {
+                    var bdate = $(this).closest('#famItems').find('.bdate').val();
+
+                    var age = moment().diff(moment(bdate, 'YYYY-MM-DD'), 'years');
+                    $(this).closest('#famItems').find('.age').val(age);
+                })
+            })
+        });
+    </script>
+@endpush

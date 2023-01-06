@@ -159,9 +159,9 @@
 
         <div class="row">
             <div class="col-md-12">
-                <x-card title="Family Member" data-item-container>
+                <x-card title="Family Member" data-item-container id="famMem">
                     <button type="button" class="btn btn-primary mb-3" data-add-item>Add Family Member</button>
-                    <div class="row border rounded-sm border-primary mt-3 pt-3 pb-3 " data-parent>
+                    <div class="row border rounded-sm border-primary mt-3 pt-3 pb-3 " data-parent id="famItems">
                         <div class="col-md-12 d-flex flex-wrap">
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Full Name:</label>
@@ -181,13 +181,13 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Birthdate:</label>
-                                <input type="date" name="bdate[]" class="form-control" value="{{ old('bdate.0') }}"
-                                    placeholder="Enter Birthdate" />
+                                <input type="date" name="bdate[]" class="form-control bdate"
+                                    value="{{ old('bdate.0') }}" placeholder="Enter Birthdate" />
                             </div>
                             <div class="form-group col-md-3">
-                                <label class="form-label font-weight-bolder">Age:</label>
-                                <input type="number" name="age[]" class="form-control" value="{{ old('age.0') }}"
-                                    placeholder="Enter Age" />
+                                <label class="form-label font-weight-bolder">Age (*in years)</label>
+                                <input type="text" name="age[]" class="form-control age"
+                                    value="{{ old('age.0') }}" placeholder="0" readonly />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Religion:</label>
@@ -236,3 +236,18 @@
         </div>
     </form>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#famMem').on('input change', '#famItems .bdate', function() {
+                $(this).closest('#famItems').find('.bdate', '.age').each(function() {
+                    var bdate = $(this).closest('#famItems').find('.bdate').val();
+
+                    var age = moment().diff(moment(bdate, 'YYYY-MM-DD'), 'years');
+                    $(this).closest('#famItems').find('.age').val(age);
+                })
+            })
+        });
+    </script>
+@endpush
