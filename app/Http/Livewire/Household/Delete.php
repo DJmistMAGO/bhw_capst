@@ -21,10 +21,10 @@ class Delete extends Component
 
     public function delete($id)
     {
-        $abc = Household::where('id', $id)->first();
-        if ($abc != null) {
-            $abc->delete();
-            return redirect()->to('/household');
+        $household = Household::where('id', $id)->first();
+        if ($household != null) {
+            $household->delete();
+            return redirect()->to('/household')->with('success', 'Household deleted successfully');
         }
         return redirect()->to('/household')->with('error', 'Something went wrong');
     }

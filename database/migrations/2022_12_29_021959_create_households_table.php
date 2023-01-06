@@ -29,8 +29,8 @@ return new class extends Migration
             $table->string('fam_planning');
             $table->string('env_sanitation');
             $table->string('electrification');
-            $table->string('animal_owned');
-            $table->string('vehicle');
+            $table->string('animal_owned')->nullable();
+            $table->string('vehicle')->nullable();
             $table->string('total_voter')->nullable();
             $table->timestamps();
         });
