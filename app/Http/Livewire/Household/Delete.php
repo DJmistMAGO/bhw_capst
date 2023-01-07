@@ -24,6 +24,9 @@ class Delete extends Component
         $household = Household::with('residents')->where('id', $id)->first();
         // check first  if household is not null
         if ($household != null) {
+            // delete first the resident records with the household_id of the household
+            $household->residents->each->delete();
+            // then delete the household
             $household->delete();
             return redirect()->route('household.index');
         } else {
