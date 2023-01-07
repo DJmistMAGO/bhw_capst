@@ -28,23 +28,30 @@
                     <th class="text-muted">#</th>
                     <th>Household No.</th>
                     <th>Purok</th>
-                    <th class="text-center">Actions</th>
+                    <th>Family Count</th>
+                    <th>Actions</th>
                 </thead>
-                <tbody> 
+                <tbody>
+                    @forelse ($households as $hhold)
                         <tr>
-                            <td>00011</td>
-                            <td>1</td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $hhold->household_no }}</td>
+                            <td>{{ $hhold->purok }}</td>
+                            <td>{{ $hhold->total_fam }}</td>
+                            <td>
+                                @livewire('household.trash', ['households' => $hhold], key($hhold->id))
+                            </td>
                         </tr>
-                    {{-- @empty
+                    @empty
                         <tr>
                             <td colspan="12" class="text-center">No data</td>
                         </tr>
-                    @endforelse --}}
+                    @endforelse
                 </tbody>
             </table>
-            {{-- <div class="d-flex justify-content-center">
-                {{ $residents->links() }}
-            </div> --}}
+            <div class="d-flex justify-content-center">
+                {{-- {{ $households->links() }} --}}
+            </div>
         </div>
     </div>
 @endsection

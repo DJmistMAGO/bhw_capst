@@ -7,7 +7,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ResidentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ReportController;
-
+use App\Http\Controllers\TrashbinController;
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -49,7 +49,9 @@ Route::middleware('auth')->group(function () {
         Route::group([
             'prefix' => 'report'
         ], function () {
-            Route::get('/', 'index')->name('report.index'); 
+            Route::get('/', 'index')->name('report.index');
         });
     });
-}); 
+
+    Route::get('/trashbin', [TrashbinController::class, 'trashbin'])->name('trashbin.index');
+});

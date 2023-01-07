@@ -34,6 +34,12 @@
                         <span class="menu-text">Reports</span>
                     </a>
                 </li>
+                <li class="menu-item {{ !request()->routeIs('trashbin') ?: 'menu-item-active' }}" aria-haspopup="true">
+                    <a href="{{ route('trashbin.index') }}" class="menu-link">
+                        <i class="menu-icon flaticon2-trash"></i>
+                        <span class="menu-text">Trashbin</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
