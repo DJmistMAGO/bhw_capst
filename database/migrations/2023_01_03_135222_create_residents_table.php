@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('residents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('household_id')->constrained()->references('id')->on('households')->onDelete('cascade')->nullable();
+            $table->foreignId('household_id')->constrained()->references('id')->on('households')->onDelete('cascade');
             $table->string('fullname');
             $table->string('gender');
             $table->date('bdate');
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('marital_status');
             $table->string('pwd_type')->nullable();
             $table->string('is_voter')->default(false);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

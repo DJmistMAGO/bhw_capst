@@ -32,6 +32,7 @@ return new class extends Migration
             $table->string('animal_owned')->nullable();
             $table->string('vehicle')->nullable();
             $table->string('total_voter')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

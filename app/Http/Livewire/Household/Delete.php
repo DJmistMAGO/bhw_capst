@@ -21,12 +21,16 @@ class Delete extends Component
 
     public function delete($id)
     {
-        $household = Household::where('id', $id)->first();
+        $household = Household::with('residents')->where('id', $id)->first();
+        // check first  if household is not null
         if ($household != null) {
             $household->delete();
-            return redirect()->to('/household')->with('success', 'Household deleted successfully');
+            return redirect()->route('household.index');
+        } else {
+            $this->dispatchBrowserEvent('swal:deleted', ['message' => 'Household not found!']);
         }
-        return redirect()->to('/household')->with('error', 'Something went wrong');
+
+        return redirect()->route('household.index');
     }
 
     public function render()

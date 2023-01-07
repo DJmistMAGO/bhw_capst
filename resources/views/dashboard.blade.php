@@ -643,7 +643,10 @@
             fill: {
                 colors: ['#1BC5BD'],
                 opacity: 1
-            }
+            },
+            noData: {
+                text: 'Loading ....',
+            },
         };
 
         var chart = new ApexCharts(document.querySelector("#chart2"), options);

@@ -39,7 +39,7 @@
                             <td>{{ $resident->household?->household_no ?? '' }}</td>
                             <td>{{ $resident->fullname }}</td>
                             <td>{{ date('F d, Y', strtotime($resident->bdate)) }}</td>
-                            <td>{{ $resident->household->purok }}</td>
+                            <td>{{ $resident->household?->purok ?? '' }}</td>
                             @if (auth()->user()->user_name == 'treseBHW')
                                 <td class="nowrap d-flex justify-content-center">
                                     <div class="d-flex justify-content-center">
@@ -47,7 +47,6 @@
                                             class="btn btn-sm btn-success mr-1"> VIEW </a>
                                         <a href="{{ route('resident.edit', $resident->id) }}"
                                             class="btn btn-sm btn-primary mr-1"> EDIT </a>
-                                        {{-- @livewire('resident.delete', ['resident' => $resident], key($resident->id)) --}}
                                     </div>
                                 </td>
                             @endif
