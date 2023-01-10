@@ -1,0 +1,21 @@
+.aside-menu, .aside-menu-wrapper{
+    background-color: #ECC610 !important;
+}
+
+.aside-menu .menu-nav>.menu-item.menu-item-active>.menu-heading .menu-icon, .aside-menu .menu-nav>.menu-item.menu-item-active>.menu-link .menu-icon{
+    color: #ECC610 !important;
+}
+
+ .menu-icon{
+    color: #1B1B28 !important;
+}
+
+.aside-menu .menu-nav>.menu-item.menu-item-active>.menu-heading .menu-text, .aside-menu .menu-nav>.menu-item.menu-item-active>.menu-link .menu-text{
+    color: #fff !important;
+}
+
+
+/* .aside .aside-menu .menu-nav>.menu-item> */
+.menu-link .menu-text{
+    color: #28251e !important;
+}

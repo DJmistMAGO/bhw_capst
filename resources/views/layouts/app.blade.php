@@ -12,6 +12,7 @@
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/custom/prismjs/prismjs.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/style1.css') }}" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" href="{{ asset('assets/images/st_trese.png') }}" />
 
 
