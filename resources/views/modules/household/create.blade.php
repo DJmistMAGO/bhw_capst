@@ -37,7 +37,7 @@
                                 value="{{ old('total_fam') }}" placeholder="Enter Family Count" />
                         </div>
 
-                        <div class="form-group col-md-3">
+                        {{-- <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">15-49 SWARA:</label>
                             <select class="form-control" name="swara" id="">
                                 <option value="">--Please Select--</option>
@@ -46,7 +46,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">USING IODIZED SALT:</label>
@@ -104,17 +104,6 @@
                         </div>
 
                         <div class="form-group col-md-3">
-                            <label class="form-label font-weight-bolder">Family Planning:</label>
-                            <select class="form-control" name="fam_planning" id="">
-                                <option value="">--Please Select--</option>
-                                @foreach ($fam_plans as $fam_plan)
-                                    <option value="{{ $fam_plan }}" @selected(old('fam_planning') == $fam_plan)>{{ $fam_plan }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Electrification:</label>
                             <select class="form-control" name="electrification" id="">
                                 <option value="">--Please Select--</option>
@@ -124,7 +113,6 @@
                                 @endforeach
                             </select>
                         </div>
-
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Environmental Sanitation:</label>
                             <select class="form-control" name="env_sanitation" id="">
@@ -136,19 +124,32 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-md-3">
+                            <label class="form-label font-weight-bolder">Family Planning:</label>
+                            <select class="form-control" name="fam_planning" id="options">
+                                <option value="">--Please Select--</option>
+                                @foreach ($fam_plans as $fam_plan)
+                                    <option value="{{ $fam_plan }}" @selected(old('fam_planning') == $fam_plan)>{{ $fam_plan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-3" id="otherOptionGroup" style="display: none;">
+                            <label for="otherOption" class="text-danger">Please Specify:</label>
+                            <input type="text" class="form-control" id="otherOption" name="otherOption"
+                                placeholder="Enter family planning" value="{{ old('otherOption') }}">
+                        </div>
+
                         <div class="form-group col-md-6">
                             <label class="form-label font-weight-bolder">Animal Owned:</label>
-                            <textarea name="animal_owned" class="form-control" placeholder="Ex. Dog, Cat, Rabbit, etc." rows="2">
-                                {{ old('animal_owned') }}
-                            </textarea>
+                            <textarea name="animal_owned" class="form-control" placeholder="Ex. Dog, Cat, Rabbit, etc." rows="2">{{ old('animal_owned') }}</textarea>
                             <span class="text-muted">Enter animals owned separated by a comma (,)</span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label class="form-label font-weight-bolder">Vehicle Owned:</label>
-                            <textarea name="vehicle" class="form-control" placeholder="Ex. Motorcycle, Car, Jeep, Truck, etc." rows="2">
-                                {{ old('vehicle') }}
-                            </textarea>
+                            <textarea name="vehicle" class="form-control" placeholder="Ex. Motorcycle, Car, Jeep, Truck, etc." rows="2">{{ old('vehicle') }}</textarea>
                             <span class="text-muted">Enter vehicle/s owned separated by a comma (,)</span>
                         </div>
 
@@ -248,6 +249,14 @@
                     $(this).closest('#famItems').find('.age').val(age);
                 })
             })
+        });
+
+        $('#options').on('change', function() {
+            if (this.value === 'Others') {
+                $("#otherOptionGroup").show();
+            } else {
+                $("#otherOptionGroup").hide();
+            }
         });
     </script>
 @endpush

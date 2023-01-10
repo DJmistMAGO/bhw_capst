@@ -38,7 +38,7 @@
                                 placeholder="Enter Family Count" readonly />
                         </div>
 
-                        <div class="form-group col-md-3">
+                        {{-- <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">15-49 SWARA:</label>
                             <select class="form-control" name="swara" disabled>
                                 <option value="">--Please Select--</option>
@@ -47,7 +47,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">USING IODIZED SALT:</label>
@@ -104,7 +104,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-md-3">
+                        {{-- <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Family Planning:</label>
                             <select class="form-control" name="fam_planning" disabled>
                                 <option value="">--Please Select--</option>
@@ -113,7 +113,7 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group col-md-3">
                             <label class="form-label font-weight-bolder">Electrification:</label>
@@ -137,20 +137,33 @@
                             </select>
                         </div>
 
+                        <div class="form-group col-md-3">
+                            <label class="form-label font-weight-bolder">Family Planning:</label>
+                            <select class="form-control" name="fam_planning" id="options" disabled>
+                                <option value="">--Please Select--</option>
+                                @foreach ($fam_plans as $fam_plan)
+                                    <option value="{{ $fam_plan }}" @selected($household->fam_planning == $fam_plan)>{{ $fam_plan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-3" id="otherOptionGroup">
+                            <label for="otherOption" class="text-danger">Please Specify:</label>
+                            <input type="text" class="form-control" id="otherOption" name="otherOption" readonly
+                                placeholder="Enter family planning" value="{{ $household->otherOption }}">
+                        </div>
+
                         <div class="form-group col-md-6">
                             <label class="form-label font-weight-bolder">Animal Owned:</label>
-                            <textarea name="animal_owned" class="form-control" readonly placeholder="Ex. Dog, Cat, Rabbit, etc." rows="2">
-                                {{ $household->animal_owned }}
-                            </textarea>
+                            <textarea name="animal_owned" class="form-control" readonly placeholder="Ex. Dog, Cat, Rabbit, etc." rows="2">{{ $household->animal_owned }}</textarea>
                             <span class="text-muted">Enter animals owned separated by a comma (,)</span>
                         </div>
 
                         <div class="form-group col-md-6">
                             <label class="form-label font-weight-bolder">Vehicle Owned:</label>
                             <textarea name="vehicle" class="form-control" readonly placeholder="Ex. Motorcycle, Car, Jeep, Truck, etc."
-                                rows="2">
-                                {{ $household->vehicle }}
-                            </textarea>
+                                rows="2">{{ $household->vehicle }}</textarea>
                             <span class="text-muted">Enter vehicle/s owned separated by a comma (,)</span>
                         </div>
 

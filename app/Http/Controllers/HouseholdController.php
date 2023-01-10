@@ -22,20 +22,20 @@ class HouseholdController extends Controller
     public function create()
     {
         $puroks = ['Purok 1', 'Purok 2', 'Purok 3', 'Purok 4', 'Purok 5', 'Sitio Matanac'];
-        $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
+        // $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
         $choices = ['Yes', 'No'];
-        $herbals = ['Vegetable Gardening', 'Root Crops'];
-        $grbs = ['Burning', 'Dumping'];
+        $herbals = ['None', 'Vegetable Gardening', 'Root Crops'];
+        $grbs = ['Burial', 'Dumping', 'Composting', 'Recycling'];
         $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
         $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
-        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BTL', 'LAM', 'CONDOM', 'IUD', 'Implant'];
+        $fam_plans = ['None', 'Pills', 'DMPA', 'SMDA', 'BTL', 'LAM', 'CONDOM', 'IUD', 'Others'];
         $elecs = ['With Kontador', 'Without Kontador'];
         $sanitation = ['With CR', 'Without CR'];
         $genders = ['Male', 'Female'];
         $status = ['Single', 'Married', 'Widowed', 'Separated', 'Divorced'];
 
 
-        return view('modules.household.create', compact('puroks', 'swaras', 'choices', 'herbals', 'grbs', 'h_statuses', 'w_source', 'fam_plans', 'elecs', 'sanitation', 'genders', 'status'));
+        return view('modules.household.create', compact('puroks', 'choices', 'herbals', 'grbs', 'h_statuses', 'w_source', 'fam_plans', 'elecs', 'sanitation', 'genders', 'status'));
     }
 
 
@@ -47,13 +47,14 @@ class HouseholdController extends Controller
             'household_no' => $validated['household_no'],
             'purok' => $validated['purok'],
             'total_fam' => $validated['total_fam'],
-            'swara' => $validated['swara'],
+            // 'swara' => $validated['swara'],
             'salt' => $validated['salt'],
             'herbal' => $validated['herbal'],
             'grb_disposal' => $validated['grb_disposal'],
             'housing_status' => $validated['housing_status'],
             'water_source' => $validated['water_source'],
             'fam_planning' => $validated['fam_planning'],
+            'otherOption' => $validated['otherOption'],
             'env_sanitation' => $validated['env_sanitation'],
             'electrification' => $validated['electrification'],
             'animal_owned' => $validated['animal_owned'],
@@ -95,38 +96,38 @@ class HouseholdController extends Controller
     public function show(Household $household)
     {
         $puroks = ['Purok 1', 'Purok 2', 'Purok 3', 'Purok 4', 'Purok 5', 'Sitio Matanac'];
-        $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
+        // $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
         $choices = ['Yes', 'No'];
-        $herbals = ['Vegetable Gardening', 'Root Crops'];
-        $grbs = ['Burning', 'Dumping'];
+        $herbals = ['None', 'Vegetable Gardening', 'Root Crops'];
+        $grbs = ['Burial', 'Dumping', 'Composting', 'Recycling'];
         $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
         $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
-        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BTL', 'LAM', 'CONDOM', 'IUD', 'Implant'];
+        $fam_plans = ['None', 'Pills', 'DMPA', 'SMDA', 'BTL', 'LAM', 'CONDOM', 'IUD', 'Others'];
         $elecs = ['With Kontador', 'Without Kontador'];
         $sanitation = ['With CR', 'Without CR'];
         $genders = ['Male', 'Female'];
         $status = ['Single', 'Married', 'Widowed', 'Separated', 'Divorced'];
 
-        return view('modules.household.view', compact('household', 'puroks', 'swaras', 'choices', 'herbals', 'grbs', 'h_statuses', 'w_source', 'fam_plans', 'elecs', 'sanitation', 'genders', 'status'));
+        return view('modules.household.view', compact('household', 'puroks', 'choices', 'herbals', 'grbs', 'h_statuses', 'w_source', 'fam_plans', 'elecs', 'sanitation', 'genders', 'status'));
     }
 
 
     public function edit(Household $household)
     {
         $puroks = ['Purok 1', 'Purok 2', 'Purok 3', 'Purok 4', 'Purok 5', 'Sitio Matanac'];
-        $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
+        // $swaras = ['NHTS', 'NHTS Non 4PCS', 'Non NHTS'];
         $choices = ['Yes', 'No'];
-        $herbals = ['Vegetable Gardening', 'Root Crops'];
-        $grbs = ['Burning', 'Dumping'];
+        $herbals = ['None', 'Vegetable Gardening', 'Root Crops'];
+        $grbs = ['Burial', 'Dumping', 'Composting', 'Recycling'];
         $h_statuses = ['H1', 'H2', 'H3', 'H4', 'H5'];
         $w_source = ['Level 1 - Faucet', 'Level 2 - Hand Pump', 'Level 3 - Deep Well'];
-        $fam_plans = ['Pills', 'DMPA', 'SMDA', 'BTL', 'LAM', 'CONDOM',  'IUD', 'Implant'];
+        $fam_plans = ['None', 'Pills', 'DMPA', 'SMDA', 'BTL', 'LAM', 'CONDOM', 'IUD', 'Others'];
         $elecs = ['With Kontador', 'Without Kontador'];
         $sanitation = ['With CR', 'Without CR'];
         $genders = ['Male', 'Female'];
         $status = ['Single', 'Married', 'Widowed', 'Separated', 'Divorced'];
 
-        return view('modules.household.edit', compact('household', 'puroks', 'swaras', 'choices', 'herbals', 'grbs', 'h_statuses', 'w_source', 'fam_plans', 'elecs', 'sanitation', 'genders', 'status'));
+        return view('modules.household.edit', compact('household', 'puroks',  'choices', 'herbals', 'grbs', 'h_statuses', 'w_source', 'fam_plans', 'elecs', 'sanitation', 'genders', 'status'));
     }
 
 
@@ -142,13 +143,14 @@ class HouseholdController extends Controller
             'household_no',
             'purok',
             'total_fam',
-            'swara',
+            // 'swara',
             'salt',
             'herbal',
             'grb_disposal',
             'housing_status',
             'water_source',
             'fam_planning',
+            'otherOption',
             'env_sanitation',
             'electrification',
             'animal_owned',

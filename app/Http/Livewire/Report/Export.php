@@ -24,8 +24,8 @@ class Export extends Component
         // count household
         $householdCount = $households->count();
         if ($householdCount <= 0) {
-            $this->dispatchBrowserEvent('swalError', ['message' => 'No household record found!']);
-            return redirect(route('household.index'));
+            $this->dispatchBrowserEvent('OfficialError', ['message' => 'No household record found!']);
+            return back();
         }
 
         $members = $households->pluck('residents')->flatten();
@@ -66,26 +66,26 @@ class Export extends Component
                 $templateProcessor->setValue('f#' . ($key + 1), ' ');
 
 
-                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
-                    $templateProcessor->setValue('j#' . ($key + 1), '');
-                } else {
-                    $swara = $households->where('id', $member->household_id)->first()->swara;
-                    $templateProcessor->setValue('j#' . ($key + 1), $swara == 'NHTS' ? '✔' : ' ');
-                }
+                // if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                //     $templateProcessor->setValue('j#' . ($key + 1), '');
+                // } else {
+                //     $swara = $households->where('id', $member->household_id)->first()->swara;
+                //     $templateProcessor->setValue('j#' . ($key + 1), $swara == 'NHTS' ? '✔' : ' ');
+                // }
 
-                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
-                    $templateProcessor->setValue('k#' . ($key + 1), '');
-                } else {
-                    $swara = $households->where('id', $member->household_id)->first()->swara;
-                    $templateProcessor->setValue('k#' . ($key + 1), $swara == 'NHTS Non 4PCS' ? '✔' : ' ');
-                }
+                // if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                //     $templateProcessor->setValue('k#' . ($key + 1), '');
+                // } else {
+                //     $swara = $households->where('id', $member->household_id)->first()->swara;
+                //     $templateProcessor->setValue('k#' . ($key + 1), $swara == 'NHTS Non 4PCS' ? '✔' : ' ');
+                // }
 
-                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
-                    $templateProcessor->setValue('l#' . ($key + 1), '');
-                } else {
-                    $swara = $households->where('id', $member->household_id)->first()->swara;
-                    $templateProcessor->setValue('l#' . ($key + 1), $swara == 'Non NHTS' ? '✔' : ' ');
-                }
+                // if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                //     $templateProcessor->setValue('l#' . ($key + 1), '');
+                // } else {
+                //     $swara = $households->where('id', $member->household_id)->first()->swara;
+                //     $templateProcessor->setValue('l#' . ($key + 1), $swara == 'Non NHTS' ? '✔' : ' ');
+                // }
 
                 if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
                     $templateProcessor->setValue('m#' . ($key + 1), '');
@@ -119,7 +119,7 @@ class Export extends Component
                     $templateProcessor->setValue('r#' . ($key + 1), '');
                 } else {
                     $grb_disposal = $households->where('id', $member->household_id)->first()->grb_disposal;
-                    $templateProcessor->setValue('r#' . ($key + 1), $grb_disposal == 'Burning' ? '✔' : ' ');
+                    $templateProcessor->setValue('r#' . ($key + 1), $grb_disposal == 'Burial' ? '✔' : ' ');
                 }
 
                 if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
@@ -127,6 +127,20 @@ class Export extends Component
                 } else {
                     $grb_disposal = $households->where('id', $member->household_id)->first()->grb_disposal;
                     $templateProcessor->setValue('s#' . ($key + 1), $grb_disposal == 'Dumping' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('sc#' . ($key + 1), '');
+                } else {
+                    $grb_disposal = $households->where('id', $member->household_id)->first()->grb_disposal;
+                    $templateProcessor->setValue('sc#' . ($key + 1), $grb_disposal == 'Composting' ? '✔' : ' ');
+                }
+
+                if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
+                    $templateProcessor->setValue('sr#' . ($key + 1), '');
+                } else {
+                    $grb_disposal = $households->where('id', $member->household_id)->first()->grb_disposal;
+                    $templateProcessor->setValue('sr#' . ($key + 1), $grb_disposal == 'Recycling' ? '✔' : ' ');
                 }
 
                 if ($key > 0 && $member->household_id == $members[$key - 1]->household_id) {
@@ -224,15 +238,17 @@ class Export extends Component
             $templateProcessor->setValue('tc', $members->where('gender', 'Female')->where('pwd_type', '!=', null)->count());
             $templateProcessor->setValue('td', $members->where('age', '>=', 60)->where('gender', 'Male')->count());
             $templateProcessor->setValue('te', $members->where('age', '>=', 60)->where('gender', 'Female')->count());
-            $templateProcessor->setValue('tf', $households->where('swara',  'NHTS')->count());
-            $templateProcessor->setValue('tg', $households->where('swara',  'NHTS Non 4PCS')->count());
-            $templateProcessor->setValue('th', $households->where('swara',  'Non NHTS')->count());
+            // $templateProcessor->setValue('tf', $households->where('swara',  'NHTS')->count());
+            // $templateProcessor->setValue('tg', $households->where('swara',  'NHTS Non 4PCS')->count());
+            // $templateProcessor->setValue('th', $households->where('swara',  'Non NHTS')->count());
             $templateProcessor->setValue('ti', $households->where('salt',  'Yes')->count());
             $templateProcessor->setValue('tj', $households->where('salt',  'No')->count());
             $templateProcessor->setValue('tk', $households->where('herbal',  'Vegetable Gardening')->count());
             $templateProcessor->setValue('tl', $households->where('herbal',  'Root Crops')->count());
-            $templateProcessor->setValue('tm', $households->where('grb_disposal',  'Burning')->count());
+            $templateProcessor->setValue('tm', $households->where('grb_disposal',  'Burial')->count());
             $templateProcessor->setValue('tn', $households->where('grb_disposal',  'Dumping')->count());
+            $templateProcessor->setValue('tsc', $households->where('grb_disposal',  'Composting')->count());
+            $templateProcessor->setValue('tsr', $households->where('grb_disposal',  'Recycling')->count());
             $templateProcessor->setValue('to', $households->where('housing_status',  'H1')->count());
             $templateProcessor->setValue('tp', $households->where('housing_status',  'H2')->count());
             $templateProcessor->setValue('tq', $households->where('housing_status',  'H3')->count());

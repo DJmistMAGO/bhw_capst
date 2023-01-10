@@ -19,6 +19,12 @@ class PurokExport extends Component
         $households = Household::with('residents')->get();
         $residents = Resident::all();
 
+        $householdCount = $households->count();
+        if ($householdCount <= 0) {
+            $this->dispatchBrowserEvent('OfficialError', ['message' => 'No household record found!']);
+            return back();
+        }
+
         $households = $households->sortBy('purok');
         $households_purok1 = $households->where('purok', 'Purok 1');
         $households_purok2 = $households->where('purok', 'Purok 2');
@@ -220,19 +226,19 @@ class PurokExport extends Component
         $templateProcessor->setValue('p5con', $households_purok5->where('fam_planning', 'CONDOM')->count());
         $templateProcessor->setValue('scon', $households_sitio->where('fam_planning', 'CONDOM')->count());
 
-        $templateProcessor->setValue('p1others', $households_purok1->where('fam_planning', 'IUD')->count());
-        $templateProcessor->setValue('p2others', $households_purok2->where('fam_planning', 'IUD')->count());
-        $templateProcessor->setValue('p3others', $households_purok3->where('fam_planning', 'IUD')->count());
-        $templateProcessor->setValue('p4others', $households_purok4->where('fam_planning', 'IUD')->count());
-        $templateProcessor->setValue('p5others', $households_purok5->where('fam_planning', 'IUD')->count());
-        $templateProcessor->setValue('sothers', $households_sitio->where('fam_planning', 'IUD')->count());
+        $templateProcessor->setValue('p1others', $households_purok1->where('fam_planning', 'Others')->count());
+        $templateProcessor->setValue('p2others', $households_purok2->where('fam_planning', 'Others')->count());
+        $templateProcessor->setValue('p3others', $households_purok3->where('fam_planning', 'Others')->count());
+        $templateProcessor->setValue('p4others', $households_purok4->where('fam_planning', 'Others')->count());
+        $templateProcessor->setValue('p5others', $households_purok5->where('fam_planning', 'Others')->count());
+        $templateProcessor->setValue('sothers', $households_sitio->where('fam_planning', 'Others')->count());
 
-        $templateProcessor->setValue('p1imp', $households_purok1->where('fam_planning', 'IMPLANT')->count());
-        $templateProcessor->setValue('p2imp', $households_purok2->where('fam_planning', 'IMPLANT')->count());
-        $templateProcessor->setValue('p3imp', $households_purok3->where('fam_planning', 'IMPLANT')->count());
-        $templateProcessor->setValue('p4imp', $households_purok4->where('fam_planning', 'IMPLANT')->count());
-        $templateProcessor->setValue('p5imp', $households_purok5->where('fam_planning', 'IMPLANT')->count());
-        $templateProcessor->setValue('simp', $households_sitio->where('fam_planning', 'IMPLANT')->count());
+        $templateProcessor->setValue('p1iud', $households_purok1->where('fam_planning', 'IUD')->count());
+        $templateProcessor->setValue('p2iud', $households_purok2->where('fam_planning', 'IUD')->count());
+        $templateProcessor->setValue('p3iud', $households_purok3->where('fam_planning', 'IUD')->count());
+        $templateProcessor->setValue('p4iud', $households_purok4->where('fam_planning', 'IUD')->count());
+        $templateProcessor->setValue('p5iud', $households_purok5->where('fam_planning', 'IUD')->count());
+        $templateProcessor->setValue('siud', $households_sitio->where('fam_planning', 'IUD')->count());
         // 0-4
         $age1m_p1 = $households_purok1->sum(function ($household) {
             return $household->residents->where('gender', 'Male')->where('age', '<=', 4)->count();

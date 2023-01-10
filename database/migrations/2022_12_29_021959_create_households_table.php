@@ -20,13 +20,14 @@ return new class extends Migration
             $table->integer('total_fam');
             $table->integer('total_pwd')->nullable();
             $table->integer('total_senior')->nullable();
-            $table->string('swara');
+            // $table->string('swara');
             $table->string('salt');
-            $table->string('herbal');
+            $table->string('herbal')->nullable();
             $table->string('grb_disposal');
             $table->string('housing_status');
             $table->string('water_source');
             $table->string('fam_planning');
+            $table->string('otherOption')->nullable();
             $table->string('env_sanitation');
             $table->string('electrification');
             $table->string('animal_owned')->nullable();
