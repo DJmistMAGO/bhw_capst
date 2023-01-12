@@ -53,8 +53,8 @@ class UpdateRequest extends FormRequest
             'marital_status.*' => ['nullable'],
             'pwd_type' => ['nullable', 'array'],
             'pwd_type.*' => ['nullable'],
-            'is_voter' => ['required', 'array'],
-            'is_voter.*' => ['required'],
+            'is_voter' => ['nullable', 'array'],
+            'is_voter.*' => ['nullable'],
             'memberId' => ['nullable'],
             'memberId.*' => ['nullable'],
         ];
