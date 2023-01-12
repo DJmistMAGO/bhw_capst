@@ -34,11 +34,11 @@ class UpdateRequest extends FormRequest
             // 'age.*' => ['nullable'],
             'religion' => ['nullable'],
             // 'religion.*' => ['nullable'],
-            'marital_status' => ['required'],
+            'marital_status' => ['nullable'],
             // 'marital_status.*' => ['nullable'],
             'pwd_type' => ['nullable'],
             // 'pwd_type.*' => ['nullable'],
-            'is_voter' => ['required'],
+            'is_voter' => ['nullable'],
             // 'is_voter.*' => ['required'],
         ];
     }

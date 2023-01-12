@@ -21,9 +21,9 @@ return new class extends Migration
             $table->date('bdate');
             $table->integer('age');
             $table->string('religion')->nullable();
-            $table->string('marital_status');
+            $table->string('marital_status')->nullable();
             $table->string('pwd_type')->nullable();
-            $table->string('is_voter')->default(false);
+            $table->string('is_voter')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
