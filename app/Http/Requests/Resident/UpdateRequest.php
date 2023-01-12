@@ -25,21 +25,24 @@ class UpdateRequest extends FormRequest
     {
         return [
             'fullname' => ['required'],
-            // 'fullname.*' => ['nullable'],
             'gender' => ['required'],
-            // 'gender.*' => ['nullable'],
             'bdate' => ['required'],
-            // 'bdate.*' => ['nullable'],
-            'age' => ['nullable'],
-            // 'age.*' => ['nullable'],
+            'age' => ['required'],
             'religion' => ['nullable'],
-            // 'religion.*' => ['nullable'],
-            'marital_status' => ['nullable'],
-            // 'marital_status.*' => ['nullable'],
+            'marital_status' => ['required'],
             'pwd_type' => ['nullable'],
-            // 'pwd_type.*' => ['nullable'],
             'is_voter' => ['nullable'],
-            // 'is_voter.*' => ['required'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'fullname.required' => 'Fullname is required',
+            'gender.required' => 'Gender is required',
+            'bdate.required' => 'Birthdate is required',
+            'age.required' => 'Age is required',
+            'marital_status.required' => 'Religion is required',
         ];
     }
 }

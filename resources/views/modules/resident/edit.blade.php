@@ -17,11 +17,11 @@
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Full Name:</label>
                                 <input type="text" name="fullname" class="form-control" value="{{ $resident->fullname }}"
-                                    placeholder="Enter Fullname" />
+                                    placeholder="Enter Fullname" required />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Gender:</label>
-                                <select class="form-control" name="gender" id="">
+                                <select class="form-control" name="gender" required>
                                     <option value="">--Please Select--</option>
                                     @foreach ($genders as $gender)
                                         <option value="{{ $gender }}" @selected($resident->gender == $gender)>
@@ -33,7 +33,7 @@
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Birthdate:</label>
                                 <input type="date" name="bdate" class="form-control bdate"
-                                    value="{{ $resident->bdate }}" placeholder="Enter Birthdate" />
+                                    value="{{ $resident->bdate }}" placeholder="Enter Birthdate" required />
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Age:</label>
@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Marital Status:</label>
-                                <select class="form-control" name="marital_status">
+                                <select class="form-control" name="marital_status" required>
                                     <option value="">--Select Marital Status--</option>
                                     @foreach ($status as $m_status)
                                         <option value="{{ $m_status }}" @selected($resident->marital_status == $m_status)>
@@ -58,8 +58,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label class="form-label font-weight-bolder">Is a voter?</label>
-
-                                <select name="is_voter" class="form-control">
+                                <select name="is_voter" class="form-control" required>
                                     <option value="">--Select--</option>
                                     <option value="true" {{ $resident->is_voter == 'true' ? 'selected' : '' }}>Yes
                                     </option>
